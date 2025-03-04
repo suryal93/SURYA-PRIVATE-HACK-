@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwSsJmDAo7O46BXlhzGm6ge5IFhb5R4jMit6HHEH4GgYrfTPuq_irSslA&s=10') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+            backdrop-filter: blur(10px);
+        }
+        .login-container h2 {
+            margin-bottom: 10px;
+            color: white;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: white;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+        }
+        .btn {
+            width: 100%;
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .success {
+            color: lightgreen;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>ENTER HACK 🔐</h2>
+        <h2>KEY BUY SURYA HACKER</h2>
+        
+        <div class="input-group">
+            <label for="key">Key</label>
+            <input type="password" id="key" required onkeypress="handleKeyPress(event)">
+        </div>
+        <button class="btn" onclick="validateLogin()">Login</button>
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                validateLogin();
+            }
+        }
+
+        function validateLogin() {
+            let key = document.getElementById("key").value;
+            let message = document.getElementById("message");
+
+            if (key === "9344") {
+                message.textContent = "Login Successful! Redirecting...";
+                message.className = "message success";
+
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = "https://arunsurya111.github.io/hackersurya/";
+                }, 2000);
+            } else {
+                message.textContent = "Invalid Key!";
+                message.className = "message error";
+            }
+        }
+    </script>
+
+</body>
+</html>

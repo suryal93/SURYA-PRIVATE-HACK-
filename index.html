@@ -3,466 +3,919 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AK TKS ULTRA LOGIN</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
-    
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <title>AK Wingo Access Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #1E90FF;
-            --secondary-color: #87CEFA;
-            --accent-color: #00bcd4;
-            --error-color: #ff4444;
-            --success-color: #00C851;
-        }
-        
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'El Messiri', sans-serif;
         }
-        
         body {
-            font-family: 'Roboto', sans-serif;
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTin4N9xzGW6MifPLDpdx6khZptiORNXrjIudnaorRnp7sRczY8RQ-UUgE&s=10') no-repeat center center/cover;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            background-attachment: fixed;
-            padding: 20px;
+            position: relative;
+            transition: background 0.5s ease;
         }
         
-        .login-container {
-            width: 100%;
-            max-width: 420px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            text-align: center;
+        .holder {
+            position: absolute;
+            width: 350px;
+            background: rgba(0, 0, 0, 0.7);
             padding: 30px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            animation: fadeIn 0.5s ease-out;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.8s ease-out;
+            color: white;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+        .box h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .floating-img {
             display: block;
             margin: 0 auto 20px;
-            border: 3px solid var(--accent-color);
-            object-fit: cover;
-            transition: transform 0.3s ease;
+            width: 120px;
+            animation: floatUpDown 3s infinite alternate ease-in-out;
+            filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.3));
         }
         
-        .avatar:hover {
-            transform: scale(1.05);
+        @keyframes floatUpDown {
+            0% {
+                transform: translateY(0px);
+            }
+            100% {
+                transform: translateY(-15px);
+            }
         }
         
-        .title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 24px;
-            margin-bottom: 25px;
-            font-weight: 500;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .title i {
-            margin-right: 10px;
-        }
-        
-        .version {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 5px;
-        }
-        
-        .input-container {
+        /* Updated Login Page Styles */
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
             position: relative;
-            margin-bottom: 20px;
         }
         
-        .input-container i {
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 18px;
-            transition: color 0.3s ease;
+        .login-title {
+            font-size: 28px;
+            margin-bottom: 5px;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
-        .login-input {
-            font-family: "Lucida Console", "Courier New", monospace;
+        .login-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 1px;
+        }
+        
+        .inputBox {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .inputBox input {
             width: 100%;
-            padding: 14px 45px;
-            border: none;
+            padding: 15px 40px 15px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
             font-size: 16px;
-            outline: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
         }
         
-        .login-input::placeholder {
+        .inputBox input:focus {
+            border-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        
+        .inputBox span {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            transition: 0.3s;
         }
         
-        .login-input:focus {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.3);
+        .inputBox input:focus + span,
+        .inputBox input:valid + span {
+            top: 0;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0 5px;
+            color: #fff;
         }
         
-        .login-input:focus + i {
-            color: var(--accent-color);
-        }
-        
-        .login-button {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
-            font-weight: 500;
-            width: 100%;
-            padding: 14px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: color 0.3s;
+        }
+        
+        .toggle-password:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            gap: 8px;
+        }
+        
+        .login-btn {
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
             position: relative;
             overflow: hidden;
         }
         
-        .login-button i {
-            margin-right: 10px;
-            transition: transform 0.3s ease;
+        .login-btn:hover {
+            background: linear-gradient(45deg, #e52e71, #ff8a00);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .login-button:hover {
-            background: rgba(255, 255, 255, 0.35);
-        }
-        
-        .login-button:hover i {
-            transform: translateX(5px);
-        }
-        
-        .login-button:active {
-            transform: scale(0.98);
-        }
-        
-        .login-button::after {
+        .login-btn::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.7s;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0.3) 0%,
+                rgba(255,255,255,0) 60%
+            );
+            transform: rotate(30deg);
+            transition: all 0.3s;
         }
         
-        .login-button:hover::after {
+        .login-btn:hover::after {
             left: 100%;
         }
         
-        /* Message Styles */
-        .message {
-            font-size: 14px;
+        .start-btn {
+            background: linear-gradient(45deg, #00c853, #00e676);
             margin-top: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-            animation: fadeInOut 0.5s ease;
         }
         
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(-10px); }
-            100% { opacity: 1; transform: translateY(0); }
+        .start-btn:hover {
+            background: linear-gradient(45deg, #00e676, #00c853);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .error-message {
-            background-color: rgba(255, 68, 68, 0.2);
-            color: var(--error-color);
-            border: 1px solid var(--error-color);
+        .logout-btn {
+            background: linear-gradient(45deg, #ff1744, #f50057);
+            margin-top: 15px;
         }
         
-        .success-message {
-            background-color: rgba(0, 200, 81, 0.2);
-            color: var(--success-color);
-            border: 1px solid var(--success-color);
+        .logout-btn:hover {
+            background: linear-gradient(45deg, #f50057, #ff1744);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .attempts-counter {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 10px;
-            text-align: right;
-        }
-        
-        .footer {
+        .footer-text {
+            text-align: center;
             margin-top: 20px;
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.5);
         }
         
-        /* Responsive adjustments */
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 25px 15px;
-            }
-            
-            .title {
-                font-size: 20px;
-            }
-            
-            .avatar {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .login-input {
-                padding: 12px 40px;
-            }
-        }
-        
-        /* Shake animation for wrong password */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-5px); }
-            40%, 80% { transform: translateX(5px); }
-        }
-        
-        .shake {
-            animation: shake 0.4s ease;
-        }
-        
-        /* Iframe Styles */
-        #securedFrame {
+        .iframe-container {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: none;
             z-index: 1000;
-            background: white;
+            background: rgba(0, 0, 0, 0.9);
         }
         
-        #iframeContainer {
-            display: none;
-            margin-top: 20px;
+        .iframe-container iframe {
             width: 100%;
-            height: 500px;
+            height: 100%;
             border: none;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e52e71;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .countdown-container {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+        
+        .countdown-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .countdown-timer {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        
+        .expiry-date {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 10px;
+        }
+        
+        #loginPage {
+            display: block;
+        }
+        
+        #startPage {
+            display: none;
+        }
+        
+        .user-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .error-message {
+            color: #ff5252;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .session-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .session-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .session-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .session-value {
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .key-strength {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-top: 5px;
             overflow: hidden;
+        }
+        
+        .key-strength-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff5252, #ff8a00);
+            transition: width 0.3s;
+        }
+        
+        .key-hint {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .features-list {
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .feature-icon {
+            margin-right: 8px;
+            color: #00e676;
+        }
+        
+        /* New Login Decorative Elements */
+        .login-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        
+        .decoration-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .circle-1 {
+            width: 100px;
+            height: 100px;
+            top: -30px;
+            right: -30px;
+        }
+        
+        .circle-2 {
+            width: 60px;
+            height: 60px;
+            bottom: -20px;
+            left: -20px;
+        }
+        
+        .circle-3 {
+            width: 40px;
+            height: 40px;
+            top: 50%;
+            left: -15px;
+        }
+        
+        .login-divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+        }
+        
+        .login-divider::before,
+        .login-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .login-divider::before {
+            margin-right: 10px;
+        }
+        
+        .login-divider::after {
+            margin-left: 10px;
+        }
+        
+        .login-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        
+        .login-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .login-link:hover {
+            color: rgba(255, 255, 255, 0.9);
         }
     </style>
 </head>
 <body>
-    <div class="login-container" id="loginContainer">
-        <img src="https://media-hosting.imagekit.io/2569f4dfba90437f/1000214545.jpg?Expires=1837691062&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=SjsqzRo6LnxEucrJF0RJUxKwxFxpGrwcuGFZgbAa25GgwoUrSwxkKclEDxoEVMnHsy4BVDJO4pmJ5ZLqZlGehOTc7op~a4jPTkmhedCM~nLjoqqy7nVT8uEFiRrZQklwrsMKOo7Gw95JGv3rpqJzRD9~E9PD68HUVJY9AzFlmaP3EE1pRQlBF4IHmJPj4YnfUe1OMa3TOWUgHZrPxqYv4cy04De-AXPaGm4VO3xAYoWEP-LQQyhw8vCaw0k5tmAemqwUJolnuBkdKcYuX8dZ3nH~jQM~jkQL7RlltZM2vgN7-II31kSnb3KicwvxhqHScr1yCz8F6UPCj~yUWtko6w__" alt="Avatar" class="avatar">
+    <!-- Login Page -->
+    <div id="loginPage" class="holder">
+        <div class="login-decoration">
+            <div class="decoration-circle circle-1"></div>
+            <div class="decoration-circle circle-2"></div>
+            <div class="decoration-circle circle-3"></div>
+        </div>
         
-        <h1 class="title">
-            <i class="fa-solid fa-user-lock"></i> AK TKS ULTRA
-            <span class="version">v2.4.1</span>
-        </h1>
-        
-        <form id="loginForm">
-            <div class="input-container">
-                <i class="fa-solid fa-key"></i>
-                <input type="password" id="keyInput" class="login-input" name="key" placeholder="Enter your key" required autocomplete="off">
+        <div class="box">
+            <img src="https://i.ibb.co/G4K2gbqb/Picsart-25-03-02-22-15-39-762.png" class="floating-img" alt="Logo">
+            
+            <div class="login-header">
+                <h1 class="login-title">LOGIN AK AI</h1>
+                <p class="login-subtitle">Enter your access key below</p>
             </div>
             
-            <button type="submit" class="login-button" id="loginButton">
-                <i class="fa-solid fa-right-to-bracket"></i> Login
+            <form id="loginForm">
+                <div class="inputBox">
+                    <input type="password" id="key" required>
+                    <span>Access Key</span>
+                    <i class="fas fa-key toggle-password" id="togglePassword"></i>
+                </div>
+                <div class="key-strength">
+                    <div class="key-strength-bar" id="keyStrengthBar"></div>
+                </div>
+                <div class="key-hint" id="keyHint">Format: wingo-xxxx-xxxx-xxxx</div>
+                <div class="error-message" id="errorMessage"></div>
+                
+                <div class="login-links">
+                    <a href="#" class="login-link"></a>
+                    <a href="https://www.instagram.com/surya_sivan_magan?igsh=M2FoYWViZjQ3NDN5" class="login-link">Buy key</a>
+                </div>
+                
+                <input type="submit" class="btn login-btn" value="LOGIN">
+            </form>
+            
+            <div class="login-divider">SECURE CONNECTION</div>
+            
+            <div class="footer-text">ENCRYPTED BY SURYA • v2.4.1</div>
+        </div>
+    </div>
+    
+    <!-- Start Page -->
+    <div id="startPage" class="holder">
+        <div class="box">
+            <img src="https://i.ibb.co/G4K2gbqb/Picsart-25-03-02-22-15-39-762.png" class="floating-img" alt="Logo">
+            <h2>ACCESS GRANTED FROM ADMIN</h2>
+            <div class="user-info" id="userInfo"></div>
+            
+            <div class="session-info">
+                <div class="session-row">
+                    <span class="session-label">Session Active:</span>
+                    <span class="session-value" id="sessionActiveTime"></span>
+                </div>
+                <div class="session-row">
+                    <span class="session-label">IP Address:</span>
+                    <span class="session-value" id="ipAddress">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="countdown-container" id="countdownContainer">
+                <div class="countdown-title">Your access expires in:</div>
+                <div class="countdown-timer" id="countdownTimer"></div>
+                <div class="expiry-date" id="expiryDate"></div>
+            </div>
+            
+            <div class="features-list">
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Full Access to Premium Content</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>Encrypted Secure Connection</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <span>30 Days Unlimited Access</span>
+                </div>
+            </div>
+            
+            <button class="btn start-btn" id="startBtn">
+                <i class="fas fa-play"></i> Start Now
             </button>
-            
-            <div class="attempts-counter" id="attemptsCounter">
-                Attempts remaining: <span id="attemptsRemaining">5</span>
-            </div>
-            
-            <!-- Messages -->
-            <div class="message error-message" id="errorMessage">
-                <i class="fa-solid fa-triangle-exclamation"></i> Invalid Key! Please try again.
-            </div>
-            
-            <div class="message success-message" id="successMessage">
-                <i class="fa-solid fa-check-circle"></i> Access granted! Loading content...
-            </div>
-            
-            <div class="message error-message" id="lockedMessage">
-                <i class="fa-solid fa-lock"></i> Account locked! Too many failed attempts.
-            </div>
-            
-            <!-- Iframe Container -->
-            <div id="iframeContainer"></div>
-        </form>
-        
-        <div class="footer">
-            <p>© 2025 AK TKS ULTRA | SECURE ACCESS SYSTEM</p>
+            <button class="btn logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+            <div class="footer-text">Session Active</div>
         </div>
     </div>
 
-    <!-- Fullscreen Iframe -->
-    <iframe id="securedFrame"></iframe>
+    <!-- Content Frame -->
+    <div class="iframe-container" id="iframeContainer">
+        <button class="close-btn" id="closeBtn">
+            <i class="fas fa-times"></i> Close
+        </button>
+        <iframe id="contentFrame" src="about:blank"></iframe>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const loginPage = document.getElementById('loginPage');
+            const startPage = document.getElementById('startPage');
             const loginForm = document.getElementById('loginForm');
-            const keyInput = document.getElementById('keyInput');
-            const loginButton = document.getElementById('loginButton');
-            const errorMessage = document.getElementById('errorMessage');
-            const successMessage = document.getElementById('successMessage');
-            const lockedMessage = document.getElementById('lockedMessage');
-            const attemptsCounter = document.getElementById('attemptsCounter');
-            const attemptsRemaining = document.getElementById('attemptsRemaining');
-            const securedFrame = document.getElementById('securedFrame');
+            const keyInput = document.getElementById('key');
+            const togglePassword = document.getElementById('togglePassword');
+            const keyStrengthBar = document.getElementById('keyStrengthBar');
+            const keyHint = document.getElementById('keyHint');
+            const startBtn = document.getElementById('startBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const countdownTimer = document.getElementById('countdownTimer');
+            const expiryDateElement = document.getElementById('expiryDate');
+            const userInfoElement = document.getElementById('userInfo');
+            const sessionActiveTime = document.getElementById('sessionActiveTime');
+            const ipAddressElement = document.getElementById('ipAddress');
             const iframeContainer = document.getElementById('iframeContainer');
-            const loginContainer = document.querySelector('.login-container');
+            const contentFrame = document.getElementById('contentFrame');
+            const closeBtn = document.getElementById('closeBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const audio = document.getElementById('backgroundMusic');
             
-            // Security settings
-            const correctKey = "9344"; // Set your password here
-            let attempts = 0;
-            const maxAttempts = 5;
-            let isLocked = false;
+            // Valid access keys
+            const validKeys = [
+              "wingo-7x9p-2k4r-8z3q", "wingo-1a2b-3c4d-5e6f", "wingo-9y8z-7x6w-5v4u",
+            "wingo-q1w2-e3r4-t5y6", "wingo-u7i8-o9p0-a1s2", "wingo-d3f4-g5h6-j7k8",
+            "wingo-l9m0-n1b2-v3c4", "wingo-x5z6-q7w8-s9e0", "wingo-r1t2-y3u4-i5o6",
+            "wingo-p7a8-s9d0-f1g2", "wingo-h3j4-k5l6-z7x8", "wingo-c9v0-b1n2-m3q4",
+            "wingo-w5e6-r7t8-y9u0", "wingo-i1o2-p3a4-s5d6", "wingo-f7g8-h9j0-k1l2",
+            "wingo-z3x4-c5v6-b7n8", "wingo-m9q0-w1e2-r3t4", "wingo-y5u6-i7o8-p9a0",
+            "wingo-s1d2-f3g4-h5j6", "wingo-k7l8-z9x0-c1v2", "wingo-b3n4-m5q6-w7e8",
+            "wingo-r9t0-y1u2-i3o4", "wingo-p5a6-s7d8-f9g0", "wingo-h1j2-k3l4-z5x6",
+            "wingo-c7v8-b9n0-m1q2", "wingo-w3e4-r5t6-y7u8", "wingo-i9o0-p1a2-s3d4",
+            "wingo-f5g6-h7j8-k9l0", "wingo-z1x2-c3v4-b5n6", "wingo-m7q8-w9e0-r1t2",
+            "wingo-y3u4-i5o6-p7a8", "wingo-s9d0-f1g2-h3j4", "wingo-k5l6-z7x8-c9v0",
+            "wingo-b1n2-m3q4-w5e6", "wingo-r7t8-y9u0-i1o2", "wingo-p3a4-s5d6-f7g8",
+            "wingo-h9j0-k1l2-z3x4", "wingo-c5v6-b7n8-m9q0", "wingo-w1e2-r3t4-y5u6",
+            "wingo-i7o8-p9a0-s1d2", "wingo-f3g4-h5j6-k7l8", "wingo-z9x0-c1v2-b3n4",
+            "wingo-m5q6-w7e8-r9t0", "wingo-y1u2-i3o4-p5a6", "wingo-s7d8-f9g0-h1j2",
+            "wingo-k3l4-z5x6-c7v8", "wingo-b9n0-m1q2-w3e4", "wingo-r5t6-y7u8-i9o0",
+            "wingo-p1a2-s3d4-f5g6", "wingo-h7j8-k9l0-z1x2", "wingo-c3v4-b5n6-m7q8",
+            "wingo-w9e0-r1t2-y3u4", "wingo-i5o6-p7a8-s9d0", "wingo-f1g2-h3j4-k5l6",
+            "wingo-z7x8-c9v0-b1n2", "wingo-m3q4-w5e6-r7t8", "wingo-y9u0-i1o2-p3a4",
+            "wingo-s5d6-f7g8-h9j0", "wingo-k1l2-z3x4-c5v6", "wingo-b7n8-m9q0-w1e2",
+            "wingo-r3t4-y5u6-i7o8", "wingo-p9a0-s1d2-f3g4", "wingo-h5j6-k7l8-z9x0",
+            "wingo-c1v2-b3n4-m5q6", "wingo-w7e8-r9t0-y1u2", "wingo-i3o4-p5a6-s7d8",
+            "wingo-f9g0-h1j2-k3l4", "wingo-z5x6-c7v8-b9n0", "wingo-m1q2-w3e4-r5t6",
+            "wingo-y7u8-i9o0-p1a2", "wingo-s3d4-f5g6-h7j8", "wingo-k9l0-z1x2-c3v4",
+            "wingo-b5n6-m7q8-w9e0", "wingo-r1t2-y3u4-i5o6", "wingo-p7a8-s9d0-f1g2",
+            "wingo-h3j4-k5l6-z7x8", "wingo-c9v0-b1n2-m3q4", "wingo-w5e6-r7t8-y9u0",
+            "wingo-i1o2-p3a4-s5d6", "wingo-f7g8-h9j0-k1l2", "wingo-z3x4-c5v6-b7n8",
+            "wingo-m9q0-w1e2-r3t4", "wingo-y5u6-i7o8-p9a0", "wingo-s1d2-f3g4-h5j6",
+            "wingo-k7l8-z9x0-c1v2", "wingo-b3n4-m5q6-w7e8", "wingo-r9t0-y1u2-i3o4",
+            "wingo-p5a6-s7d8-f9g0", "wingo-h1j2-k3l4-z5x6", "wingo-c7v8-b9n0-m1q2",
+            "wingo-w3e4-r5t6-y7u8", "wingo-i9o0-p1a2-s3d4", "wingo-f5g6-h7j8-k9l0",
+            "wingo-z1x2-c3v4-b5n6", "wingo-m7q8-w9e0-r1t2", "wingo-y3u4-i5o6-p7a8",
+            "wingo-s9d0-f1g2-h3j4", "wingo-k5l6-z7x8-c9v0", "wingo-b1n2-m3q4-w5e6",
+            "wingo-r7t8-y9u0-i1o2", "wingo-p3a4-s5d6-f7g8", "wingo-h9j0-k1l2-z3x4",
+            "wingo-c5v6-b7n8-m9q0", "wingo-w1e2-r3t4-y5u6", "wingo-i7o8-p9a0-s1d2",
+            "wingo-f3g4-h5j6-k7l8", "wingo-z9x0-c1v2-b3n4", "wingo-m5q6-w7e8-r9t0",
+            "wingo-y1u2-i3o4-p5a6", "wingo-s7d8-f9g0-h1j2", "wingo-k3l4-z5x6-c7v8",
+            "wingo-b9n0-m1q2-w3e4", "wingo-r5t6-y7u8-i9o0", "wingo-p1a2-s3d4-f5g6",
+            "wingo-h7j8-k9l0-z1x2", "wingo-c3v4-b5n6-m7q8", "wingo-w9e0-r1t2-y3u4",
+            "wingo-i5o6-p7a8-s9d0", "wingo-f1g2-h3j4-k5l6", "wingo-z7x8-c9v0-b1n2",
+            "wingo-m3q4-w5e6-r7t8", "wingo-y9u0-i1o2-p3a4", "wingo-s5d6-f7g8-h9j0",
+            "wingo-k1l2-z3x4-c5v6", "wingo-b7n8-m9q0-w1e2", "wingo-r3t4-y5u6-i7o8",
+            "wingo-p9a0-s1d2-f3g4", "wingo-h5j6-k7l8-z9x0", "wingo-c1v2-b3n4-m5q6",
+            "wingo-w7e8-r9t0-y1u2", "wingo-i3o4-p5a6-s7d8", "wingo-f9g0-h1j2-k3l4",
+            "wingo-z5x6-c7v8-b9n0", "wingo-m1q2-w3e4-r5t6", "wingo-y7u8-i9o0-p1a2",
+            "wingo-s3d4-f5g6-h7j8", "wingo-k9l0-z1x2-c3v4", "wingo-b5n6-m7q8-w9e0"
+            ];
             
-            // Hide all messages initially
-            errorMessage.style.display = 'none';
-            successMessage.style.display = 'none';
-            lockedMessage.style.display = 'none';
+            // Current active key and countdown interval
+            let activeKey = null;
+            let countdownInterval = null;
+            let sessionStartTime = null;
+            let sessionTimer = null;
             
-            loginForm.addEventListener('submit', function(event) {
-                event.preventDefault();
+            // Initialize
+            keyInput.focus();
+            checkActiveSession();
+            fetchIPAddress();
+            
+            // Password visibility toggle
+            togglePassword.addEventListener('click', function() {
+                const type = keyInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                keyInput.setAttribute('type', type);
+                this.classList.toggle('fa-key');
+                this.classList.toggle('fa-eye');
+            });
+            
+            // Key input validation
+            keyInput.addEventListener('input', function() {
+                const key = this.value;
+                updateKeyStrength(key);
                 
-                if (isLocked) {
-                    return; // Don't process if locked
-                }
-                
-                const enteredKey = keyInput.value.trim();
-                
-                if (enteredKey === correctKey) {
-                    // Successful login
-                    showSuccess();
-                    
-                    // Create iframe and show content
-                    setTimeout(function() {
-                        // Option 1: Show fullscreen iframe
-                        loginContainer.style.display = 'none';
-                        securedFrame.style.display = 'block';
-                        securedFrame.src = "https://surya934467.github.io/Aihackbysurya/"; // Your target URL here
-                        
-                        // Option 2: Show embedded iframe (uncomment to use instead)
-                        // iframeContainer.style.display = 'block';
-                        // iframeContainer.innerHTML = '<iframe src="https://surya934467.github.io/Aihackbysurya/" width="100%" height="100%" style="border:none;"></iframe>';
-                    }, 1500);
+                if (key.length > 0 && key.includes('wingo-')) {
+                    keyHint.style.display = 'block';
                 } else {
-                    // Failed login
-                    attempts++;
-                    const remaining = maxAttempts - attempts;
-                    attemptsRemaining.textContent = remaining;
-                    
-                    if (remaining <= 0) {
-                        lockAccount();
-                    } else {
-                        showError();
-                    }
+                    keyHint.style.display = 'none';
                 }
             });
             
-            function showError() {
-                // Hide other messages
-                successMessage.style.display = 'none';
-                lockedMessage.style.display = 'none';
+            // Form submission handler
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const key = keyInput.value.trim();
                 
-                // Show error
-                errorMessage.style.display = 'block';
+                if (checkKey(key)) {
+                    activeKey = key;
+                    saveKeyData(key);
+                    showStartPage();
+                    keyInput.value = '';
+                    errorMessage.style.display = 'none';
+                } else {
+                    showError("Invalid access key! Please try again.");
+                    keyInput.value = '';
+                    keyInput.focus();
+                }
+            });
+            
+            // Start button click handler
+            startBtn.addEventListener('click', function() {
+                audio.play().catch(error => console.log("Audio play blocked:", error));
+                iframeContainer.style.display = 'block';
+                contentFrame.src = 'https://hackersurya12.github.io/home1/';
+            });
+            
+            // Logout button click handler
+            logoutBtn.addEventListener('click', function() {
+                closeIframe();
+                showLoginPage();
+            });
+            
+            // Close iframe button
+            closeBtn.addEventListener('click', closeIframe);
+            
+            // Update key strength indicator
+            function updateKeyStrength(key) {
+                let strength = 0;
                 
-                // Shake animation
-                loginForm.classList.add('shake');
-                setTimeout(() => {
-                    loginForm.classList.remove('shake');
-                }, 400);
+                if (key.length > 0) strength += 10;
+                if (key.length >= 5) strength += 20;
+                if (key.includes('wingo-')) strength += 30;
+                if (key.length >= 15) strength += 20;
+                if (validKeys.includes(key)) strength = 100;
                 
-                // Clear input and focus
-                keyInput.value = '';
+                keyStrengthBar.style.width = strength + '%';
+                
+                if (strength < 30) {
+                    keyStrengthBar.style.background = '#ff5252';
+                } else if (strength < 70) {
+                    keyStrengthBar.style.background = '#ff8a00';
+                } else {
+                    keyStrengthBar.style.background = '#00e676';
+                }
+            }
+            
+            // Check if key is valid
+            function checkKey(key) {
+                if (!validKeys.includes(key)) return false;
+                
+                const usedKeys = getUsedKeys();
+                const keyData = getKeyData();
+                
+                if (usedKeys.includes(key)) {
+                    // Key exists, check expiration
+                    if (keyData[key] && new Date(keyData[key].expiry) > new Date()) {
+                        return true;
+                    } else {
+                        showError("This key has expired!");
+                        return false;
+                    }
+                }
+                return true;
+            }
+            
+            // Save key data to localStorage
+            function saveKeyData(key) {
+                const usedKeys = getUsedKeys();
+                const keyData = getKeyData();
+                
+                // New key - store with expiry date (30 days from now)
+                const expiryDate = new Date();
+                expiryDate.setDate(expiryDate.getDate() + 30);
+                
+                keyData[key] = {
+                    expiry: expiryDate.toISOString(),
+                    activated: new Date().toISOString()
+                };
+                localStorage.setItem('keyData', JSON.stringify(keyData));
+                
+                // Mark key as used if not already
+                if (!usedKeys.includes(key)) {
+                    usedKeys.push(key);
+                    localStorage.setItem('usedKeys', JSON.stringify(usedKeys));
+                }
+            }
+            
+            // Show start page with countdown
+            function showStartPage() {
+                loginPage.style.display = 'none';
+                startPage.style.display = 'block';
+                
+                const keyData = getKeyData();
+                const expiryDate = keyData[activeKey]?.expiry;
+                
+                if (!expiryDate) {
+                    showError("Error: Key data not found!");
+                    showLoginPage();
+                    return;
+                }
+                
+                // Display user info
+                userInfoElement.textContent = `Access Key: ${activeKey.substring(0, 4)}...${activeKey.slice(-4)}`;
+                
+                // Format and display expiry date
+                const expiry = new Date(expiryDate);
+                expiryDateElement.textContent = `Expires on: ${expiry.toLocaleDateString()} at ${expiry.toLocaleTimeString()}`;
+                
+                // Start countdown
+                startCountdown(expiryDate);
+                
+                // Start session timer
+                sessionStartTime = new Date();
+                updateSessionTimer();
+                sessionTimer = setInterval(updateSessionTimer, 1000);
+            }
+            
+            // Update session active time
+            function updateSessionTimer() {
+                if (!sessionStartTime) return;
+                
+                const now = new Date();
+                const diff = now - sessionStartTime;
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                sessionActiveTime.textContent = `${hours}h ${minutes}m ${seconds}s`;
+            }
+            
+            // Show login page
+            function showLoginPage() {
+                activeKey = null;
+                if (countdownInterval) clearInterval(countdownInterval);
+                if (sessionTimer) clearInterval(sessionTimer);
+                startPage.style.display = 'none';
+                loginPage.style.display = 'block';
                 keyInput.focus();
+            }
+            
+            // Start countdown timer
+            function startCountdown(expiryDate) {
+                // Clear any existing interval
+                if (countdownInterval) clearInterval(countdownInterval);
                 
-                // Hide error after 3 seconds
+                updateCountdown(expiryDate); // Initial update
+                
+                // Update countdown every second
+                countdownInterval = setInterval(() => {
+                    updateCountdown(expiryDate);
+                }, 1000);
+            }
+            
+            // Update countdown display
+            function updateCountdown(expiryDate) {
+                const now = new Date().getTime();
+                const expiryTime = new Date(expiryDate).getTime();
+                const distance = expiryTime - now;
+                
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    countdownTimer.innerHTML = "EXPIRED";
+                    startBtn.disabled = true;
+                    return;
+                }
+                
+                // Calculate days, hours, minutes, seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                countdownTimer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+            
+            // Close iframe
+            function closeIframe() {
+                iframeContainer.style.display = 'none';
+                contentFrame.src = 'about:blank';
+                audio.pause();
+            }
+            
+            // Show error message
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
                 setTimeout(() => {
                     errorMessage.style.display = 'none';
                 }, 3000);
             }
             
-            function showSuccess() {
-                // Hide other messages
-                errorMessage.style.display = 'none';
-                lockedMessage.style.display = 'none';
+            // Check for active session on page load
+            function checkActiveSession() {
+                const usedKeys = getUsedKeys();
+                const keyData = getKeyData();
                 
-                // Show success
-                successMessage.style.display = 'block';
-                
-                // Disable form
-                keyInput.disabled = true;
-                loginButton.disabled = true;
-                loginButton.innerHTML = '<i class="fa-solid fa-check"></i> Verified';
-                loginButton.style.background = 'rgba(0, 200, 81, 0.3)';
+                for (const key of usedKeys) {
+                    if (keyData[key] && new Date(keyData[key].expiry) > new Date()) {
+                        activeKey = key;
+                        showStartPage();
+                        break;
+                    }
+                }
             }
             
-            function lockAccount() {
-                isLocked = true;
-                
-                // Hide other messages
-                errorMessage.style.display = 'none';
-                successMessage.style.display = 'none';
-                
-                // Show locked message
-                lockedMessage.style.display = 'block';
-                
-                // Disable form
-                keyInput.disabled = true;
-                loginButton.disabled = true;
-                loginButton.innerHTML = '<i class="fa-solid fa-lock"></i> Locked';
-                loginButton.style.background = 'rgba(255, 68, 68, 0.3)';
-                attemptsCounter.style.display = 'none';
-                
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    lockedMessage.style.display = 'none';
-                }, 5000);
+            // Fetch IP address
+            function fetchIPAddress() {
+                fetch('https://api.ipify.org?format=json')
+                    .then(response => response.json())
+                    .then(data => {
+                        ipAddressElement.textContent = data.ip;
+                    })
+                    .catch(() => {
+                        ipAddressElement.textContent = 'Unknown';
+                    });
             }
             
-            // Focus on input when page loads
-            keyInput.focus();
+            // Helper functions for localStorage
+            function getUsedKeys() {
+                return JSON.parse(localStorage.getItem('usedKeys') || '[]');
+            }
+            
+            function getKeyData() {
+                return JSON.parse(localStorage.getItem('keyData') || '{}');
+            }
         });
     </script>
 </body>

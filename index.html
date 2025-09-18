@@ -1,314 +1,561 @@
-     <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movies Aro</title>
+<title>SURYA MOVIES </title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #ffffff;
-  --card: #f8f9fa;
-  --accent: #4361ee;
-  --accent2: #3a0ca3;
-  --text: #212529;
-  --muted: #6c757d;
-  --error: #e63946;
-  --success: #2a9d8f;
-  --shadow: rgba(0, 0, 0, 0.08);
-  --hover-shadow: rgba(0, 0, 0, 0.12);
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --secondary: #3a0ca3;
+  --accent: #7209b7;
+  --success: #4cc9f0;
+  --warning: #f72585;
+  --light: #ffffff;
+  --light-2: #f8f9fa;
+  --light-3: #e9ecef;
+  --dark: #212529;
+  --dark-2: #343a40;
+  --gray: #6c757d;
+  --gray-light: #adb5bd;
+  --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(to bottom, #f9fafb, #ffffff);
-  color: var(--text);
-  margin: 0;
-  padding: 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f9fafc 0%, #edf2f7 100%);
+  color: var(--dark);
   line-height: 1.6;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.wrap {
-  max-width: 900px;
+.container {
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
+  background: var(--light);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* Header Styles */
+header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 40px 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
 }
 
 h1 {
-  text-align: center;
-  font-size: 2.5rem;
+  font-size: 3.2rem;
   font-weight: 800;
-  margin-bottom: 25px;
-  background: linear-gradient(to right, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  padding-bottom: 15px;
-}
-
-h1::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(to right, var(--accent), var(--accent2));
-  border-radius: 2px;
-}
-
-.controls {
-  display: flex;
-  gap: 10px;
   margin-bottom: 15px;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  letter-spacing: -0.5px;
 }
 
-input[type="text"] {
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
+  font-weight: 400;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Search Section */
+.search-section {
+  padding: 40px 30px;
+  background: var(--light);
+  border-bottom: 1px solid var(--light-3);
+}
+
+.search-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-box {
   flex: 1;
-  padding: 14px 16px 14px 40px;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 15px;
-  outline: none;
-  box-shadow: 0 2px 6px var(--shadow);
-  transition: all 0.3s ease;
-}
-
-input[type="text"]:focus {
-  border-color: var(--accent);
-  box-shadow: 0 4px 12px var(--hover-shadow);
-}
-
-input[type="text"]::placeholder {
-  color: var(--muted);
+  position: relative;
 }
 
 .search-icon {
   position: absolute;
-  left: 14px;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--muted);
-  z-index: 1;
+  color: var(--gray);
+  z-index: 2;
+  font-size: 18px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 18px 25px 18px 60px;
+  border-radius: 16px;
+  border: 2px solid var(--light-3);
+  background: var(--light);
+  color: var(--dark);
+  font-size: 17px;
+  outline: none;
+  transition: var(--transition);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+  font-weight: 500;
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 8px 20px rgba(67, 97, 238, 0.15);
+  transform: translateY(-2px);
+}
+
+input[type="text"]::placeholder {
+  color: var(--gray-light);
+  font-weight: 400;
 }
 
 button {
-  padding: 12px 20px;
-  border-radius: 10px;
+  padding: 18px 32px;
+  border-radius: 16px;
   border: none;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  color: #fff;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
+  transition: var(--transition);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.25);
+  font-size: 16px;
+  letter-spacing: -0.2px;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(67, 97, 238, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(67, 97, 238, 0.35);
 }
 
 button:active {
   transform: translateY(0);
 }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+.button-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alt-button {
+  background: var(--light);
+  color: var(--primary);
+  border: 2px solid var(--light-3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+  flex: 1;
+  min-width: 250px;
+  justify-content: center;
+  padding: 16px 24px;
+}
+
+.alt-button:hover {
+  background: var(--light-2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: var(--primary-light);
+}
+
+/* Results Section */
+.results-section {
+  padding: 30px;
+  background: var(--light-2);
 }
 
 .hint {
-  color: var(--muted);
-  margin-bottom: 12px;
-  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 20px;
+  background: var(--light);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 .result {
-  background: var(--card);
-  border: 1px solid #e9ecef;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px var(--shadow);
-  transition: all 0.3s ease;
+  background: var(--light);
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 25px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  border: 1px solid var(--light-3);
+  position: relative;
+  overflow: hidden;
+}
+
+.result::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary), var(--secondary));
+  opacity: 0;
+  transition: var(--transition);
 }
 
 .result:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px var(--hover-shadow);
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.result:hover::before {
+  opacity: 1;
 }
 
 .meta {
-  font-size: 0.95rem;
-  margin-bottom: 15px;
-  color: var(--text);
-  white-space: pre-wrap;
+  margin-bottom: 25px;
   line-height: 1.8;
 }
 
-.file-name {
-  font-weight: 600;
-  color: var(--accent2);
+.meta div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 17px;
 }
 
-.file-size {
-  color: var(--muted);
-  font-size: 0.9em;
+.meta strong {
+  color: var(--dark-2);
+  font-weight: 600;
+}
+
+.get-links {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+  margin-bottom: 20px;
+  padding: 16px 28px;
+  border-radius: 14px;
+  font-size: 16px;
 }
 
 .links {
-  margin-top: 15px;
-  padding: 15px;
-  background: rgba(67, 97, 238, 0.05);
-  border-radius: 10px;
-  font-size: 0.9rem;
-  border-left: 3px solid var(--accent);
+  margin-top: 25px;
+  padding: 25px;
+  background: var(--light);
+  border-radius: 16px;
+  font-size: 16px;
+  border-left: 5px solid var(--primary);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
 }
 
 .links a {
-  display: block;
-  color: var(--accent);
-  text-decoration: none;
-  padding: 8px 0;
-  transition: color 0.2s;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 12px 0;
+  transition: var(--transition);
+  border-bottom: 1px solid var(--light-3);
+  font-weight: 500;
+}
+
+.links a:last-child {
+  border-bottom: none;
 }
 
 .links a:hover {
-  color: var(--accent2);
+  color: var(--secondary);
+  padding-left: 10px;
 }
 
 .error {
-  color: var(--error);
+  color: var(--warning);
   font-weight: 600;
+  padding: 20px;
+  background: rgba(247, 37, 133, 0.08);
+  border-radius: 16px;
+  border-left: 5px solid var(--warning);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  margin: 25px 0;
+  box-shadow: var(--card-shadow);
 }
 
 .loading {
-  color: var(--muted);
+  color: var(--gray);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  padding: 20px;
+  background: var(--light);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
 }
 
 footer {
   text-align: center;
-  margin-top: 40px;
-  font-size: 0.85rem;
-  color: var(--muted);
-  padding-top: 20px;
-  border-top: 1px solid #e9ecef;
+  padding: 40px 30px;
+  color: var(--gray);
+  font-size: 1rem;
+  background: var(--light);
+  border-top: 1px solid var(--light-3);
+  margin-top: auto;
 }
 
-.button-box {
-  text-align: center;
-  margin: 25px auto;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.button-box button {
-  display: inline-flex;
-  margin: 0;
-  padding: 14px 24px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(67, 97, 238, 0.25);
-}
-
-.button-box button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 15px rgba(67, 97, 238, 0.35);
-}
-
-.button-box button:active {
-  transform: translateY(0);
-}
-
-/* Animation for search results */
+/* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .result {
-  animation: fadeIn 0.4s ease forwards;
+  animation: fadeIn 0.5s ease forwards;
 }
 
-/* Mobile responsive */
-@media(max-width: 600px) {
-  h1 {
-    font-size: 2rem;
+.search-container {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.button-group {
+  animation: fadeIn 0.7s ease forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .container {
+    border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: none;
   }
   
-  .controls {
+  header {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-container {
     flex-direction: column;
   }
   
-  .search-icon {
-    top: 18px;
-    left: 14px;
+  .button-group {
+    flex-direction: column;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .header-content {
+    padding: 0 10px;
+  }
+  
+  header, .search-section, .results-section {
+    padding: 30px 20px;
   }
   
   input[type="text"] {
-    padding-left: 40px;
+    padding: 16px 20px 16px 50px;
   }
   
-  button {
-    width: 100%;
-    justify-content: center;
+  .alt-button {
+    min-width: auto;
   }
-  
-  .button-box {
-    flex-direction: column;
+}
+
+/* Video player styling */
+.video-popup {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(67, 97, 238, 0.2);
+}
+
+/* Focus styles */
+button:focus, input:focus {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 2px;
+}
+
+/* Badge for results count */
+.results-count {
+  background: var(--primary);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+/* Skeleton loading animation */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
   }
-  
-  .button-box button {
-    width: 100%;
+  100% {
+    background-position: -200% 0;
   }
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-<h1><i class="fas fa-film"></i> Movies Aro</h1>
-<div class="controls">
-  <i class="fas fa-search search-icon"></i>
-  <input type="text" id="q" placeholder="Search for movies...">
-  <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
-</div>
+<div class="container">
+  <header>
+    <div class="header-bg"></div>
+    <div class="header-content">
+      <h1><i class="fas fa-fim"></i> SURYA MOVIES </h1>
+      <p class="subtitle">Discover and download & watch your favorite movies</p>
+    </div>
+  </header>
 
-<div class="button-box">
-  <button onclick="window.open('https://moviesaro.netlify.app', '_self')">
-    <i class="fas fa-external-link-alt"></i> Go to Movies Aro (OLD)
-  </button>
-  <button onclick="window.open('https://moviesarodub.netlify.app', '_self')">
-    <i class="fas fa-globe"></i> All Tamil Dubbed Movies
-  </button>
-</div>
+  <section class="search-section">
+    <div class="search-container">
+      <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="q" placeholder="Search for movies by title, year, or genre...">
+      </div>
+      <button id="searchBtn">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+    
+    <div class="button-group">
+      <button class="alt-button" onclick="window.open('https://suryamovie.42web.io/movie.php?i=1', '_self')">
+        <i class="fas fa-arrow-right"></i> Go to SURYA MOVIES  (1)
+      </button>
+      <button class="alt-button" onclick="window.open('https://suryamovie.42web.io/movie.dub?i=1', '_self')">
+        <i class="fas fa-globe"></i> All Tamil Dubbed Movies
+      </button>
+    </div>
+  </section>
 
-<div id="output"></div>
+  <section class="results-section">
+    <div id="output">
+      <div class="hint">
+        <i class="fas fa-info-circle"></i> Enter a movie name above to start searching
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>SURYA MOVIES  &copy; 2025 | Find your favorite movies</p>
+    </div>
+  </footer>
 </div>
 
 <script>
@@ -317,16 +564,24 @@ function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;
 
 // Yearly text files
 const yearlyFiles = [
-  "1920.txt", "1945.txt", "1947.txt", "1950.txt", "1993.txt", "1995.txt", 
-  "1996.txt", "1999.txt", "2003.txt", "2005.txt", "2007.txt", "2008.txt", 
-  "2009.txt", "2010.txt", "2012.txt", "2013.txt", "2014.txt", "2015.txt", 
-  "2016.txt", "2017.txt", "2018.txt", "2019.txt", "2020.txt", "2021.txt", 
-  "2022.txt", "2023.txt", "2024.txt", "2025.txt", "Unknown_Year.txt"
+  "1920.txt", "1945.txt", "1947.txt", "1950.txt", "1993.txt", 
+  "1995.txt", "1996.txt", "1999.txt", "2003.txt", "2005.txt", 
+  "2007.txt", "2008.txt", "2009.txt", "2010.txt", "2012.txt", 
+  "2013.txt", "2014.txt", "2015.txt", "2016.txt", "2017.txt", 
+  "2018.txt", "2019.txt", "2020.txt", "2021.txt", "2022.txt", 
+  "2023.txt", "2024.txt", "2025.txt", "Unknown_Year.txt"
 ];
 
 let files = [];
 
 async function loadAllFiles() {
+  // Show loading state
+  document.getElementById('output').innerHTML = `
+    <div class="loading">
+      <i class="fas fa-spinner fa-spin"></i> Loading movie database...
+    </div>
+  `;
+  
   for(const fname of yearlyFiles){
     try{
       const resp = await fetch(fname);
@@ -336,7 +591,11 @@ async function loadAllFiles() {
         const nameM = block.match(/File Name:\s*(.*)/i);
         const sizeM = block.match(/File Size:\s*(.*)/i);
         const linkM = block.match(/Download Link:\s*(.*)/i);
-        return { name: nameM?nameM[1].trim(): '', size: sizeM?sizeM[1].trim():'', link: linkM?linkM[1].trim(): '' };
+        return { 
+          name: nameM?nameM[1].trim(): '', 
+          size: sizeM?sizeM[1].trim():'', 
+          link: linkM?linkM[1].trim(): '' 
+        };
       }).filter(f=>f.name && f.size && f.link);
       files = files.concat(parsed);
     }catch(e){console.error("Failed to load",fname,e);}
@@ -348,16 +607,30 @@ function renderResults(list){
   const outEl=document.getElementById('output');
   outEl.innerHTML='';
   if(!list.length){ 
-    outEl.innerHTML='<div class="error"><i class="fas fa-exclamation-circle"></i> No results found.</div>'; 
+    outEl.innerHTML=`
+      <div class="error">
+        <i class="fas fa-exclamation-circle"></i> No results found. Try a different search term.
+      </div>
+    `; 
     return; 
   }
+  
+  // Add results count
+  const resultsHeader = document.createElement('div');
+  resultsHeader.className = 'hint';
+  resultsHeader.innerHTML = `
+    <i class="fas fa-check-circle" style="color: var(--primary);"></i> 
+    Found ${list.length} results <span class="results-count">${list.length}</span>
+  `;
+  outEl.appendChild(resultsHeader);
+  
   list.forEach((f,idx)=>{
     const container=document.createElement('div'); 
     container.className='result';
     container.innerHTML=`
       <div class="meta">
-        <div class="file-name"><i class="fas fa-file-video"></i> ${escapeHtml(f.name)}</div>
-        <div class="file-size"><i class="fas fa-weight-hanging"></i> ${escapeHtml(f.size)}</div>
+        <div><i class="fas fa-file-video" style="color: var(--primary);"></i> <strong>File Name:</strong> ${escapeHtml(f.name)}</div>
+        <div><i class="fas fa-weight-hanging" style="color: var(--primary);"></i> <strong>File Size:</strong> ${escapeHtml(f.size)}</div>
       </div>
       <button data-link="${escapeHtml(f.link)}" class="get-links">
         <i class="fas fa-download"></i> Get Download Links
@@ -376,7 +649,11 @@ function renderResults(list){
         await fetchAndShowDownloadDiv(btn.dataset.link, linksContainer); 
       }
       catch(err){ 
-        linksContainer.innerHTML=`<div class="error"><i class="fas fa-exclamation-circle"></i> Error: ${escapeHtml(err.message||String(err))}</div>`; 
+        linksContainer.innerHTML=`
+          <div class="error">
+            <i class="fas fa-exclamation-triangle"></i> Error: ${escapeHtml(err.message||String(err))}
+          </div>
+        `; 
       }
       finally{ 
         btn.disabled=false; 
@@ -402,6 +679,7 @@ async function fetchAndShowDownloadDiv(targetUrl, containerEl){
     if(!r2.ok) throw new Error(r2.status); 
     text=await r2.text(); 
   }
+  
   const parser=new DOMParser();
   const doc=parser.parseFromString(text,'text/html');
   let downloadDiv=doc.querySelector('.download');
@@ -409,76 +687,131 @@ async function fetchAndShowDownloadDiv(targetUrl, containerEl){
     const m=text.match(/<div[^>]*class=["']?download["']?[^>]*>[\s\S]*?<\/div>/i); 
     if(m&&m[0]) downloadDiv=parser.parseFromString(m[0],'text/html').body.firstElementChild; 
   }
+  
   if(!downloadDiv){ 
-    containerEl.innerHTML='<div class="error"><i class="fas fa-exclamation-circle"></i> No download section found</div>'; 
+    containerEl.innerHTML=`
+      <div class="error">
+        <i class="fas fa-times-circle"></i> No download links found
+      </div>
+    `; 
     return; 
   }
+  
   containerEl.innerHTML=downloadDiv.outerHTML;
   containerEl.querySelectorAll('a').forEach(a=>{
     a.setAttribute('target','_blank'); 
     a.setAttribute('rel','noopener noreferrer nofollow');
-    a.classList.add('download-link');
-    
-    // Add icon to download links
-    const icon = document.createElement('i');
-    icon.className = 'fas fa-download';
-    a.prepend(icon);
+    // Add download icon to links
+    if (!a.querySelector('i')) {
+      a.innerHTML = `<i class="fas fa-download"></i> ${a.innerHTML}`;
+    }
     
     a.addEventListener('click', e=>{
       e.preventDefault(); 
       const originalUrl=a.href;
       const choicePopup=document.createElement('div');
       Object.assign(choicePopup.style,{
-        position:'fixed',top:'0',left:'0',width:'100%',height:'100%',
-        backgroundColor:'rgba(0,0,0,0.6)',display:'flex',alignItems:'center',
-        justifyContent:'center',zIndex:'9999'
+        position:'fixed',
+        top:'0',
+        left:'0',
+        width:'100%',
+        height:'100%',
+        backgroundColor:'rgba(0,0,0,0.6)',
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center',
+        zIndex:'9999'
       });
+      
       choicePopup.innerHTML=`
-        <div style="background:#fff;padding:25px;border-radius:12px;text-align:center;max-width:320px;color:#333;box-shadow:0 10px 25px rgba(0,0,0,0.15);">
-          <h3 style="margin-top:0;color:var(--accent);"><i class="fas fa-download"></i> Choose an option</h3>
-          <button id="playOnlineBtn" style="padding:12px 20px;margin:8px;background:var(--accent);color:white;border:none;border-radius:8px;cursor:pointer;width:100%;">
-            <i class="fas fa-play-circle"></i> Play Online
-          </button>
-          <button id="downloadBtn" style="padding:12px 20px;margin:8px;background:var(--accent2);color:white;border:none;border-radius:8px;cursor:pointer;width:100%;">
-            <i class="fas fa-download"></i> Download
-          </button>
+        <div style="background:#fff;padding:30px;border-radius:20px;text-align:center;max-width:350px;color:#2b2d42;box-shadow:0 20px 40px rgba(0,0,0,0.15);">
+          <h3 style="margin-top:0;display:flex;align-items:center;justify-content:center;gap:10px;">
+            <i class="fas fa-play-circle" style="color:#4361ee;font-size:24px;"></i> Choose Option
+          </h3>
+          <p style="margin:15px 0 25px;">How would you like to proceed?</p>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px;">
+            <button id="playOnlineBtn" style="padding:14px 24px;border-radius:12px;border:none;background:linear-gradient(135deg, #4361ee, #3a0ca3);color:white;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-size:16px;">
+              <i class="fas fa-play"></i> Play Online
+            </button>
+            <button id="downloadBtn" style="padding:14px 24px;border-radius:12px;border:none;background:#f8f9fa;color:#2b2d42;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-size:16px;">
+              <i class="fas fa-download"></i> Download
+            </button>
+          </div>
         </div>`;
+      
       document.body.appendChild(choicePopup);
       
       function showOkPopup(action){
         document.body.removeChild(choicePopup);
         const okPopup=document.createElement('div');
         Object.assign(okPopup.style,{
-          position:'fixed',top:'0',left:'0',width:'100%',height:'100%',
-          backgroundColor:'rgba(0,0,0,0.6)',display:'flex',alignItems:'center',
-          justifyContent:'center',zIndex:'9999'
+          position:'fixed',
+          top:'0',
+          left:'0',
+          width:'100%',
+          height:'100%',
+          backgroundColor:'rgba(0,0,0,0.6)',
+          display:'flex',
+          alignItems:'center',
+          justifyContent:'center',
+          zIndex:'9999'
         });
-        okPopup.innerHTML=`<div style="background:#fff;padding:25px;border-radius:12px;text-align:center;max-width:350px;color:#333;box-shadow:0 10px 25px rgba(0,0,0,0.15);">
-          <p style="margin:0 0 20px;line-height:1.5;"><i class="fas fa-info-circle" style="color:var(--accent);"></i> You will be redirected to a new site. Please wait 5 seconds there and then return here.</p>
-          <button id="okBtn" style="padding:10px 20px;background:var(--accent);color:white;border:none;border-radius:8px;cursor:pointer;">
-            OK
-          </button>
-        </div>`;
+        
+        okPopup.innerHTML=`
+          <div style="background:#fff;padding:30px;border-radius:20px;text-align:center;max-width:380px;color:#2b2d42;box-shadow:0 20px 40px rgba(0,0,0,0.15);">
+            <h3 style="margin-top:0;display:flex;align-items:center;justify-content:center;gap:10px;">
+              <i class="fas fa-info-circle" style="color:#4361ee;font-size:24px;"></i> Notice
+            </h3>
+            <p style="margin:15px 0 25px;">You will be redirected to a new site. Please wait 5 seconds there, then return here.</p>
+            <button id="okBtn" style="padding:12px 24px;margin-top:10px;border-radius:12px;border:none;background:linear-gradient(135deg, #4361ee, #3a0ca3);color:white;font-weight:bold;cursor:pointer;font-size:16px;">
+              OK
+            </button>
+          </div>`;
+        
         document.body.appendChild(okPopup);
         okPopup.querySelector('#okBtn').addEventListener('click',()=>{
           document.body.removeChild(okPopup);
           window.open('https://otieu.com/4/9535254','_blank');
           setTimeout(()=>{
-            if(action==='download'){ window.location.href=originalUrl; }
+            if(action==='download'){ 
+              window.location.href=originalUrl; 
+            }
             else if(action==='play'){
               const videoPopup=document.createElement('div');
               Object.assign(videoPopup.style,{
-                position:'fixed',top:'50%',left:'50%',width:'80%',background:'#fff',
-                padding:'20px',transform:'translate(-50%, -50%)',zIndex:'9999',
-                maxWidth:'90vw',maxHeight:'90vh',overflow:'auto',borderRadius:'12px',
-                boxShadow:'0 15px 35px rgba(0,0,0,0.2)'
+                position:'fixed',
+                top:'50%',
+                left:'50%',
+                width:'85%',
+                maxWidth:'900px',
+                background:'#fff',
+                padding:'25px',
+                transform:'translate(-50%, -50%)',
+                zIndex:'9999',
+                borderRadius:'20px',
+                boxShadow:'0 25px 60px rgba(0,0,0,0.25)'
               });
+              
               const closeBtn=document.createElement('button'); 
               closeBtn.innerHTML='<i class="fas fa-times"></i> Close'; 
-              closeBtn.style.cssText='display:block;margin-bottom:15px;padding:8px 16px;background:#f1f3f5;border:none;border-radius:6px;cursor:pointer;';
+              closeBtn.style.display='block'; 
+              closeBtn.style.marginBottom='20px'; 
+              closeBtn.style.padding='10px 18px';
+              closeBtn.style.background='#f8f9fa';
+              closeBtn.style.color='#2b2d42';
+              closeBtn.style.border='none';
+              closeBtn.style.borderRadius='10px';
+              closeBtn.style.cursor='pointer';
+              closeBtn.style.marginLeft='auto';
+              closeBtn.style.fontWeight='600';
+              
               const loader=document.createElement('div'); 
               loader.innerHTML='<i class="fas fa-spinner fa-spin"></i> Loading video...'; 
-              loader.style.cssText='text-align:center;margin-bottom:15px;';
+              loader.style.textAlign='center'; 
+              loader.style.marginBottom='20px';
+              loader.style.color='#6c757d';
+              loader.style.fontSize='18px';
+              
               const video=document.createElement('video'); 
               video.setAttribute('playsinline',''); 
               video.setAttribute('preload','auto'); 
@@ -487,23 +820,33 @@ async function fetchAndShowDownloadDiv(targetUrl, containerEl){
               video.setAttribute('controls',''); 
               video.setAttribute('controlsList','nodownload'); 
               video.style.maxWidth='100%'; 
-              video.style.maxHeight='80vh';
-              video.style.borderRadius='8px';
+              video.style.maxHeight='75vh';
+              video.style.borderRadius='12px';
+              video.style.backgroundColor='#000';
+              
               video.addEventListener('contextmenu',e=>e.preventDefault());
               const source=document.createElement('source'); 
               source.src=originalUrl; 
               source.type='video/mp4'; 
               video.appendChild(source);
-              video.addEventListener('canplay',()=>{ loader.remove(); });
+              
+              video.addEventListener('canplay',()=>{ 
+                loader.remove(); 
+              });
+              
               videoPopup.appendChild(closeBtn); 
               videoPopup.appendChild(loader); 
               videoPopup.appendChild(video); 
               document.body.appendChild(videoPopup);
-              closeBtn.addEventListener('click',()=>{ document.body.removeChild(videoPopup); });
+              
+              closeBtn.addEventListener('click',()=>{ 
+                document.body.removeChild(videoPopup); 
+              });
             }
           },6000);
         });
       }
+      
       choicePopup.querySelector('#playOnlineBtn').addEventListener('click',()=>showOkPopup('play'));
       choicePopup.querySelector('#downloadBtn').addEventListener('click',()=>showOkPopup('download'));
     });
@@ -517,7 +860,11 @@ const searchBtn=document.getElementById('searchBtn');
 function doSearch(){
   const q=qEl.value.trim(); 
   if(!q){ 
-    document.getElementById('output').innerHTML='<div class="hint"><i class="fas fa-info-circle"></i> Type a search term.</div>'; 
+    document.getElementById('output').innerHTML=`
+      <div class="hint">
+        <i class="fas fa-info-circle"></i> Please enter a search term to find movies.
+      </div>
+    `; 
     return; 
   }
   const filtered=files.filter(f=>f.name.toLowerCase().includes(q.toLowerCase()));
@@ -527,8 +874,13 @@ function doSearch(){
 searchBtn.addEventListener('click', doSearch);
 qEl.addEventListener('keydown', e => { if(e.key==='Enter') doSearch(); });
 
+// Initialize the application
 async function init() {
-  document.getElementById('output').innerHTML='<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading movie database...</div>';
+  document.getElementById('output').innerHTML=`
+    <div class="loading">
+      <i class="fas fa-spinner fa-spin"></i> Loading movie database...
+    </div>
+  `;
   await loadAllFiles();
   const params = new URLSearchParams(window.location.search);
   const query = params.get("q");
@@ -536,12 +888,17 @@ async function init() {
     qEl.value = query;
     doSearch();
   } else {
-    document.getElementById('output').innerHTML='<div class="hint"><i class="fas fa-search"></i> Search for movies using the box above.</div>';
+    document.getElementById('output').innerHTML=`
+      <div class="hint">
+        <i class="fas fa-search"></i> Search for movies by name above.
+      </div>
+    `;
   }
 }
 
+// Start the application
 init();
 </script>
 
 </body>
-</html>         
+</html>

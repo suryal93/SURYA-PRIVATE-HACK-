@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,300 +7,319 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root {
-  --bg: #ffffff;
-  --card: #f8f9fa;
-  --accent: #4361ee;
-  --accent2: #3a0ca3;
-  --text: #2b2d42;
-  --muted: #6c757d;
-  --error: #e63946;
-  --success: #2a9d8f;
-  --shadow: rgba(0, 0, 0, 0.08);
-  --hover-shadow: rgba(0, 0, 0, 0.12);
+  --primary: #4361ee;
+  --secondary: #3a0ca3;
+  --accent: #7209b7;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --success: #4cc9f0;
+  --warning: #f72585;
+  --gray: #6c757d;
+  --light-gray: #e9ecef;
+  --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
-body { 
-  font-family: 'Inter', 'Segoe UI', sans-serif; 
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%); 
-  color: var(--text); 
-  margin: 0; 
-  padding: 20px; 
-  line-height: 1.6; 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+  color: var(--dark);
+  line-height: 1.6;
+  padding: 20px;
   min-height: 100vh;
 }
 
-.wrap { 
-  max-width: 900px; 
-  margin: 0 auto; 
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-h1 { 
-  text-align: center; 
-  font-size: 2.5rem; 
-  font-weight: 800; 
-  margin-bottom: 25px; 
-  background: linear-gradient(to right, var(--accent), var(--accent2)); 
-  -webkit-background-clip: text; 
-  -webkit-text-fill-color: transparent;
+header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  transform: rotate(30deg);
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 15px;
 }
 
-.controls { 
-  display: flex; 
-  gap: 10px; 
-  margin-bottom: 15px; 
+.subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.search-section {
+  padding: 30px;
+  background: white;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.search-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  flex: 1;
   position: relative;
-}
-
-input[type="text"] { 
-  flex: 1; 
-  padding: 14px 16px 14px 44px; 
-  border-radius: 10px; 
-  border: 1px solid #e2e8f0; 
-  background: var(--bg); 
-  color: var(--text); 
-  font-size: 16px; 
-  outline: none;
-  box-shadow: 0 2px 6px var(--shadow);
-  transition: all 0.3s ease;
-} 
-
-input[type="text"]:focus {
-  border-color: var(--accent);
-  box-shadow: 0 4px 12px var(--hover-shadow);
-}
-
-input[type="text"]::placeholder { 
-  color: var(--muted); 
 }
 
 .search-icon {
   position: absolute;
-  left: 16px;
+  left: 18px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--muted);
+  color: var(--gray);
   z-index: 2;
 }
 
-button { 
-  padding: 14px 20px; 
-  border-radius: 10px; 
-  border: none; 
-  background: linear-gradient(90deg, var(--accent), var(--accent2)); 
-  color: #fff; 
-  font-weight: bold; 
-  cursor: pointer; 
-  transition: transform 0.2s, box-shadow 0.2s; 
-  box-shadow: 0 4px 6px rgba(67, 97, 238, 0.3);
+input[type="text"] {
+  width: 100%;
+  padding: 16px 20px 16px 50px;
+  border-radius: 12px;
+  border: 2px solid var(--light-gray);
+  background: white;
+  color: var(--dark);
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(67, 97, 238, 0.15);
+}
+
+button {
+  padding: 16px 28px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 8px;
-} 
+  box-shadow: 0 4px 10px rgba(67, 97, 238, 0.25);
+}
 
-button:hover { 
-  transform: translateY(-2px); 
-  box-shadow: 0 6px 12px rgba(67, 97, 238, 0.4);
-} 
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(67, 97, 238, 0.35);
+}
 
 button:active {
   transform: translateY(0);
 }
 
-button:disabled { 
-  opacity: 0.6; 
-  cursor: not-allowed; 
-  transform: none;
-  box-shadow: none;
+.button-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
-.hint { 
-  color: var(--muted); 
-  margin-bottom: 12px; 
-  font-size: 0.9rem; 
+.alt-button {
+  background: white;
+  color: var(--primary);
+  border: 2px solid var(--light-gray);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.result { 
-  background: var(--bg); 
-  border: 1px solid #e2e8f0; 
-  border-radius: 12px; 
-  padding: 20px; 
-  margin-bottom: 20px; 
-  box-shadow: 0 4px 12px var(--shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
-} 
-
-.result:hover { 
-  transform: translateY(-5px); 
-  box-shadow: 0 8px 24px var(--hover-shadow);
+.alt-button:hover {
+  background: var(--light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.result::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--accent), var(--accent2));
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.results-section {
+  padding: 20px 30px;
 }
 
-.result:hover::before {
-  opacity: 1;
+.hint {
+  color: var(--gray);
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1rem;
+  padding: 10px;
 }
 
-.meta { 
-  font-size: 0.95rem; 
-  margin-bottom: 15px; 
-  color: var(--text); 
-  white-space: pre-wrap;
+.result {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  border: 1px solid var(--light-gray);
+}
+
+.result:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
+}
+
+.meta {
+  margin-bottom: 20px;
   line-height: 1.8;
 }
 
-.meta strong {
-  color: var(--accent2);
-}
-
-.links { 
-  margin-top: 15px; 
-  padding: 15px; 
-  background: #f1f5f9; 
-  border-radius: 10px; 
-  font-size: 0.9rem; 
-  border-left: 3px solid var(--accent);
-} 
-
-.links a { 
-  display: block; 
-  color: var(--accent); 
-  text-decoration: none; 
-  padding: 8px 0; 
-  transition: color 0.2s, padding-left 0.2s;
+.meta div {
   display: flex;
   align-items: center;
-  gap: 8px;
-} 
+  gap: 10px;
+  margin-bottom: 8px;
+}
 
-.links a:hover { 
-  color: var(--accent2); 
+.get-links {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+  margin-bottom: 15px;
+}
+
+.links {
+  margin-top: 20px;
+  padding: 20px;
+  background: var(--light);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  border-left: 4px solid var(--primary);
+}
+
+.links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 10px 0;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.links a:last-child {
+  border-bottom: none;
+}
+
+.links a:hover {
+  color: var(--secondary);
   padding-left: 5px;
-} 
-
-.links a i {
-  font-size: 14px;
 }
 
-.error { 
-  color: var(--error); 
-  font-weight: 600; 
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 15px;
-  background: rgba(230, 57, 70, 0.1);
-  border-radius: 10px;
-  border-left: 3px solid var(--error);
-} 
-
-.loading { 
-  color: var(--muted); 
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-footer { 
-  text-align: center; 
-  margin-top: 40px; 
-  font-size: 0.85rem; 
-  color: var(--muted); 
-  padding: 20px 0;
-}
-
-.button-box {
-  text-align: center;
-  margin: 25px auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-}
-
-.button-box button {
-  display: inline-flex;
-  margin: 0;
-  padding: 14px 24px;
-  font-size: 16px;
+.error {
+  color: var(--warning);
   font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3);
+  padding: 15px;
+  background: rgba(247, 37, 133, 0.1);
+  border-radius: 12px;
+  border-left: 4px solid var(--warning);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
 }
 
-.button-box button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(67, 97, 238, 0.4);
+.loading {
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
 }
 
-.button-box button:active {
-  transform: translateY(0);
+footer {
+  text-align: center;
+  padding: 30px;
+  color: var(--gray);
+  font-size: 0.9rem;
+  background: var(--light);
+  border-top: 1px solid var(--light-gray);
 }
 
-/* Animation for search results */
+/* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .result {
   animation: fadeIn 0.4s ease forwards;
 }
 
-/* Mobile responsive */
-@media(max-width: 600px) { 
-  h1 { 
-    font-size: 2rem; 
-    flex-direction: column;
-    gap: 5px;
-  } 
-  
-  .controls { 
-    flex-direction: column; 
-  } 
-  
-  .search-icon {
-    top: 18%;
-    left: 16px;
-  }
-  
-  input[type="text"] {
-    padding-left: 40px;
-  }
-  
-  .button-box {
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-container {
     flex-direction: column;
   }
   
-  .button-box button {
-    width: 100%;
+  .button-group {
+    flex-direction: column;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .header-content {
+    padding: 0 10px;
+  }
+  
+  header, .search-section, .results-section {
+    padding: 20px;
   }
 }
 
 /* Video player styling */
-video {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.video-popup {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 /* Custom scrollbar */
@@ -313,34 +332,56 @@ video {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: var(--primary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent2);
+  background: var(--secondary);
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-<h1><i class="fas fa-film"></i> Movies Aro</h1>
-<div class="controls">
-  <i class="fas fa-search search-icon"></i>
-  <input type="text" id="q" placeholder="Search for movies...">
-  <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
-</div>
+<div class="container">
+  <header>
+    <div class="header-content">
+      <h1><i class="fas fa-film"></i> Movies Aro</h1>
+      <p class="subtitle">Find and download your favorite movies</p>
+    </div>
+  </header>
 
-<div class="button-box">
-  <button onclick="window.open('https://moviesaro.netlify.app', '_self')">
-    <i class="fas fa-arrow-right"></i> Go to Movies Aro (OLD)
-  </button>
-  <button onclick="window.open('https://moviesarodub.netlify.app', '_self')">
-    <i class="fas fa-globe"></i> All Tamil Dubbed Movies
-  </button>
-</div>
+  <section class="search-section">
+    <div class="search-container">
+      <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="q" placeholder="Search for movies...">
+      </div>
+      <button id="searchBtn">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+    
+    <div class="button-group">
+      <button class="alt-button" onclick="window.open('https://moviesaro.netlify.app', '_self')">
+        <i class="fas fa-arrow-right"></i> Go to Movies Aro (OLD)
+      </button>
+      <button class="alt-button" onclick="window.open('https://moviesarodub.netlify.app', '_self')">
+        <i class="fas fa-globe"></i> All Tamil Dubbed Movies
+      </button>
+    </div>
+  </section>
 
-<div id="output"></div>
+  <section class="results-section">
+    <div id="output">
+      <div class="hint">
+        <i class="fas fa-info-circle"></i> Enter a movie name above to start searching
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Movies Aro &copy; 2023 | Find your favorite movies</p>
+  </footer>
 </div>
 
 <script>
@@ -349,35 +390,12 @@ function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;
 
 // Yearly text files
 const yearlyFiles = [
-  "1920.txt",
-  "1945.txt",
-  "1947.txt",
-  "1950.txt",
-  "1993.txt",
-  "1995.txt",
-  "1996.txt",
-  "1999.txt",
-  "2003.txt",
-  "2005.txt",
-  "2007.txt",
-  "2008.txt",
-  "2009.txt",
-  "2010.txt",
-  "2012.txt",
-  "2013.txt",
-  "2014.txt",
-  "2015.txt",
-  "2016.txt",
-  "2017.txt",
-  "2018.txt",
-  "2019.txt",
-  "2020.txt",
-  "2021.txt",
-  "2022.txt",
-  "2023.txt",
-  "2024.txt",
-  "2025.txt",
-  "Unknown_Year.txt"
+  "1920.txt", "1945.txt", "1947.txt", "1950.txt", "1993.txt", 
+  "1995.txt", "1996.txt", "1999.txt", "2003.txt", "2005.txt", 
+  "2007.txt", "2008.txt", "2009.txt", "2010.txt", "2012.txt", 
+  "2013.txt", "2014.txt", "2015.txt", "2016.txt", "2017.txt", 
+  "2018.txt", "2019.txt", "2020.txt", "2021.txt", "2022.txt", 
+  "2023.txt", "2024.txt", "2025.txt", "Unknown_Year.txt"
 ];
 
 let files = [];
@@ -392,7 +410,11 @@ async function loadAllFiles() {
         const nameM = block.match(/File Name:\s*(.*)/i);
         const sizeM = block.match(/File Size:\s*(.*)/i);
         const linkM = block.match(/Download Link:\s*(.*)/i);
-        return { name: nameM?nameM[1].trim(): '', size: sizeM?sizeM[1].trim():'', link: linkM?linkM[1].trim(): '' };
+        return { 
+          name: nameM?nameM[1].trim(): '', 
+          size: sizeM?sizeM[1].trim():'', 
+          link: linkM?linkM[1].trim(): '' 
+        };
       }).filter(f=>f.name && f.size && f.link);
       files = files.concat(parsed);
     }catch(e){console.error("Failed to load",fname,e);}
@@ -412,8 +434,13 @@ function renderResults(list){
     const container=document.createElement('div'); 
     container.className='result';
     container.innerHTML=`
-      <div class="meta"><strong><i class="fas fa-file-video"></i> File Name:</strong> ${escapeHtml(f.name)}\n<strong><i class="fas fa-weight-hanging"></i> File Size:</strong> ${escapeHtml(f.size)}</div>
-      <button data-link="${escapeHtml(f.link)}" class="get-links"><i class="fas fa-download"></i> Get Download Links</button>
+      <div class="meta">
+        <div><i class="fas fa-file-video"></i> <strong>File Name:</strong> ${escapeHtml(f.name)}</div>
+        <div><i class="fas fa-weight-hanging"></i> <strong>File Size:</strong> ${escapeHtml(f.size)}</div>
+      </div>
+      <button data-link="${escapeHtml(f.link)}" class="get-links">
+        <i class="fas fa-download"></i> Get Download Links
+      </button>
       <div class="links" id="links-${idx}" aria-live="polite"></div>
     `;
     outEl.appendChild(container);
@@ -586,7 +613,7 @@ async function fetchAndShowDownloadDiv(targetUrl, containerEl){
               video.style.maxWidth='100%'; 
               video.style.maxHeight='70vh';
               video.style.borderRadius='8px';
-              video.style.backgroundColor:'#000';
+              video.style.backgroundColor='#000';
               
               video.addEventListener('contextmenu',e=>e.preventDefault());
               const source=document.createElement('source'); 
@@ -617,14 +644,14 @@ async function fetchAndShowDownloadDiv(targetUrl, containerEl){
   });
 }
 
-// Search
+// Search functionality
 const qEl=document.getElementById('q');
 const searchBtn=document.getElementById('searchBtn');
 
 function doSearch(){
   const q=qEl.value.trim(); 
   if(!q){ 
-    document.getElementById('output').innerHTML='<div class="hint"><i class="fas fa-info-circle"></i> Type a search term to find movies.</div>'; 
+    document.getElementById('output').innerHTML='<div class="hint"><i class="fas fa-info-circle"></i> Please enter a search term to find movies.</div>'; 
     return; 
   }
   const filtered=files.filter(f=>f.name.toLowerCase().includes(q.toLowerCase()));
@@ -634,9 +661,10 @@ function doSearch(){
 searchBtn.addEventListener('click', doSearch);
 qEl.addEventListener('keydown', e => { if(e.key==='Enter') doSearch(); });
 
+// Initialize the application
 async function init() {
   document.getElementById('output').innerHTML='<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading movie database...</div>';
-  await loadAllFiles(); // wait for .txt files to load
+  await loadAllFiles();
   const params = new URLSearchParams(window.location.search);
   const query = params.get("q");
   if (query) {
@@ -647,8 +675,10 @@ async function init() {
   }
 }
 
+// Start the application
 init();
 </script>
 
 </body>
-</html>
+</html>    
+                    

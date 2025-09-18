@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+     <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,381 +7,308 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root {
-  --primary: #4361ee;
-  --secondary: #3a0ca3;
-  --accent: #7209b7;
-  --light: #f8f9fa;
-  --dark: #212529;
-  --success: #4cc9f0;
-  --warning: #f72585;
-  --gray: #6c757d;
-  --light-gray: #e9ecef;
-  --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  --hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  --bg: #ffffff;
+  --card: #f8f9fa;
+  --accent: #4361ee;
+  --accent2: #3a0ca3;
+  --text: #212529;
+  --muted: #6c757d;
+  --error: #e63946;
+  --success: #2a9d8f;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --hover-shadow: rgba(0, 0, 0, 0.12);
 }
 
 body {
-  font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
-  color: var(--dark);
-  line-height: 1.6;
+  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(to bottom, #f9fafb, #ffffff);
+  color: var(--text);
+  margin: 0;
   padding: 20px;
-  min-height: 100vh;
+  line-height: 1.6;
 }
 
-.container {
-  max-width: 1000px;
+.wrap {
+  max-width: 900px;
   margin: 0 auto;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-header {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  color: white;
-  padding: 30px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-  transform: rotate(30deg);
-}
-
-.header-content {
-  position: relative;
-  z-index: 2;
 }
 
 h1 {
-  font-size: 2.8rem;
+  text-align: center;
+  font-size: 2.5rem;
   font-weight: 800;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-.subtitle {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin-bottom: 20px;
-}
-
-.search-section {
-  padding: 30px;
-  background: white;
-  border-bottom: 1px solid var(--light-gray);
-}
-
-.search-container {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.search-box {
-  flex: 1;
+  margin-bottom: 25px;
+  background: linear-gradient(to right, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   position: relative;
+  padding-bottom: 15px;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--accent), var(--accent2));
+  border-radius: 2px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 14px 16px 14px 40px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+  box-shadow: 0 2px 6px var(--shadow);
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px var(--hover-shadow);
+}
+
+input[type="text"]::placeholder {
+  color: var(--muted);
 }
 
 .search-icon {
   position: absolute;
-  left: 18px;
+  left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--gray);
-  z-index: 2;
-}
-
-input[type="text"] {
-  width: 100%;
-  padding: 16px 20px 16px 50px;
-  border-radius: 12px;
-  border: 2px solid var(--light-gray);
-  background: white;
-  color: var(--dark);
-  font-size: 16px;
-  outline: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-input[type="text"]:focus {
-  border-color: var(--primary);
-  box-shadow: 0 4px 12px rgba(67, 97, 238, 0.15);
+  color: var(--muted);
+  z-index: 1;
 }
 
 button {
-  padding: 16px 28px;
-  border-radius: 12px;
+  padding: 12px 20px;
+  border-radius: 10px;
   border: none;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  color: white;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  color: #fff;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 10px rgba(67, 97, 238, 0.25);
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(67, 97, 238, 0.35);
+  box-shadow: 0 6px 12px rgba(67, 97, 238, 0.3);
 }
 
 button:active {
   transform: translateY(0);
 }
 
-.button-group {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.alt-button {
-  background: white;
-  color: var(--primary);
-  border: 2px solid var(--light-gray);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.alt-button:hover {
-  background: var(--light);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.results-section {
-  padding: 20px 30px;
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .hint {
-  color: var(--gray);
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: 1rem;
-  padding: 10px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  font-size: 0.9rem;
 }
 
 .result {
-  background: white;
-  border-radius: 16px;
-  padding: 24px;
+  background: var(--card);
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
   margin-bottom: 20px;
-  box-shadow: var(--card-shadow);
+  box-shadow: 0 4px 12px var(--shadow);
   transition: all 0.3s ease;
-  border: 1px solid var(--light-gray);
 }
 
 .result:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--hover-shadow);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px var(--hover-shadow);
 }
 
 .meta {
-  margin-bottom: 20px;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  color: var(--text);
+  white-space: pre-wrap;
   line-height: 1.8;
 }
 
-.meta div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
+.file-name {
+  font-weight: 600;
+  color: var(--accent2);
 }
 
-.get-links {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
-  margin-bottom: 15px;
+.file-size {
+  color: var(--muted);
+  font-size: 0.9em;
 }
 
 .links {
-  margin-top: 20px;
-  padding: 20px;
-  background: var(--light);
-  border-radius: 12px;
-  font-size: 0.95rem;
-  border-left: 4px solid var(--primary);
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(67, 97, 238, 0.05);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  border-left: 3px solid var(--accent);
 }
 
 .links a {
+  display: block;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.2s;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--primary);
-  text-decoration: none;
-  padding: 10px 0;
-  transition: all 0.2s ease;
-  border-bottom: 1px solid var(--light-gray);
-}
-
-.links a:last-child {
-  border-bottom: none;
+  gap: 8px;
 }
 
 .links a:hover {
-  color: var(--secondary);
-  padding-left: 5px;
+  color: var(--accent2);
 }
 
 .error {
-  color: var(--warning);
+  color: var(--error);
   font-weight: 600;
-  padding: 15px;
-  background: rgba(247, 37, 133, 0.1);
-  border-radius: 12px;
-  border-left: 4px solid var(--warning);
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin: 20px 0;
+  gap: 8px;
 }
 
 .loading {
-  color: var(--gray);
+  color: var(--muted);
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 15px;
+  gap: 8px;
 }
 
 footer {
   text-align: center;
-  padding: 30px;
-  color: var(--gray);
-  font-size: 0.9rem;
-  background: var(--light);
-  border-top: 1px solid var(--light-gray);
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
 }
 
-/* Animations */
+.button-box {
+  text-align: center;
+  margin: 25px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.button-box button {
+  display: inline-flex;
+  margin: 0;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(67, 97, 238, 0.25);
+}
+
+.button-box button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(67, 97, 238, 0.35);
+}
+
+.button-box button:active {
+  transform: translateY(0);
+}
+
+/* Animation for search results */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .result {
   animation: fadeIn 0.4s ease forwards;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .search-container {
-    flex-direction: column;
-  }
-  
-  .button-group {
-    flex-direction: column;
-  }
-  
+/* Mobile responsive */
+@media(max-width: 600px) {
   h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
+  }
+  
+  .controls {
     flex-direction: column;
-    gap: 10px;
   }
   
-  .header-content {
-    padding: 0 10px;
+  .search-icon {
+    top: 18px;
+    left: 14px;
   }
   
-  header, .search-section, .results-section {
-    padding: 20px;
+  input[type="text"] {
+    padding-left: 40px;
   }
-}
-
-/* Video player styling */
-.video-popup {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary);
+  
+  button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .button-box {
+    flex-direction: column;
+  }
+  
+  .button-box button {
+    width: 100%;
+  }
 }
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <div class="header-content">
-      <h1><i class="fas fa-film"></i> Movies Aro</h1>
-      <p class="subtitle">Find and download your favorite movies</p>
-    </div>
-  </header>
+<div class="wrap">
+<h1><i class="fas fa-film"></i> Movies Aro</h1>
+<div class="controls">
+  <i class="fas fa-search search-icon"></i>
+  <input type="text" id="q" placeholder="Search for movies...">
+  <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+</div>
 
-  <section class="search-section">
-    <div class="search-container">
-      <div class="search-box">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="q" placeholder="Search for movies...">
-      </div>
-      <button id="searchBtn">
-        <i class="fas fa-search"></i> Search
-      </button>
-    </div>
-    
-    <div class="button-group">
-      <button class="alt-button" onclick="window.open('https://moviesaro.netlify.app', '_self')">
-        <i class="fas fa-arrow-right"></i> Go to Movies Aro (OLD)
-      </button>
-      <button class="alt-button" onclick="window.open('https://moviesarodub.netlify.app', '_self')">
-        <i class="fas fa-globe"></i> All Tamil Dubbed Movies
-      </button>
-    </div>
-  </section>
+<div class="button-box">
+  <button onclick="window.open('https://moviesaro.netlify.app', '_self')">
+    <i class="fas fa-external-link-alt"></i> Go to Movies Aro (OLD)
+  </button>
+  <button onclick="window.open('https://moviesarodub.netlify.app', '_self')">
+    <i class="fas fa-globe"></i> All Tamil Dubbed Movies
+  </button>
+</div>
 
-  <section class="results-section">
-    <div id="output">
-      <div class="hint">
-        <i class="fas fa-info-circle"></i> Enter a movie name above to start searching
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>Movies Aro &copy; 2023 | Find your favorite movies</p>
-  </footer>
+<div id="output"></div>
 </div>
 
 <script>
@@ -390,12 +317,11 @@ function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;
 
 // Yearly text files
 const yearlyFiles = [
-  "1920.txt", "1945.txt", "1947.txt", "1950.txt", "1993.txt", 
-  "1995.txt", "1996.txt", "1999.txt", "2003.txt", "2005.txt", 
-  "2007.txt", "2008.txt", "2009.txt", "2010.txt", "2012.txt", 
-  "2013.txt", "2014.txt", "2015.txt", "2016.txt", "2017.txt", 
-  "2018.txt", "2019.txt", "2020.txt", "2021.txt", "2022.txt", 
-  "2023.txt", "2024.txt", "2025.txt", "Unknown_Year.txt"
+  "1920.txt", "1945.txt", "1947.txt", "1950.txt", "1993.txt", "1995.txt", 
+  "1996.txt", "1999.txt", "2003.txt", "2005.txt", "2007.txt", "2008.txt", 
+  "2009.txt", "2010.txt", "2012.txt", "2013.txt", "2014.txt", "2015.txt", 
+  "2016.txt", "2017.txt", "2018.txt", "2019.txt", "2020.txt", "2021.txt", 
+  "2022.txt", "2023.txt", "2024.txt", "2025.txt", "Unknown_Year.txt"
 ];
 
 let files = [];
@@ -410,11 +336,7 @@ async function loadAllFiles() {
         const nameM = block.match(/File Name:\s*(.*)/i);
         const sizeM = block.match(/File Size:\s*(.*)/i);
         const linkM = block.match(/Download Link:\s*(.*)/i);
-        return { 
-          name: nameM?nameM[1].trim(): '', 
-          size: sizeM?sizeM[1].trim():'', 
-          link: linkM?linkM[1].trim(): '' 
-        };
+        return { name: nameM?nameM[1].trim(): '', size: sizeM?sizeM[1].trim():'', link: linkM?linkM[1].trim(): '' };
       }).filter(f=>f.name && f.size && f.link);
       files = files.concat(parsed);
     }catch(e){console.error("Failed to load",fname,e);}
@@ -426,17 +348,16 @@ function renderResults(list){
   const outEl=document.getElementById('output');
   outEl.innerHTML='';
   if(!list.length){ 
-    outEl.innerHTML='<div class="error"><i class="fas fa-exclamation-circle"></i> No results found. Try a different search term.</div>'; 
+    outEl.innerHTML='<div class="error"><i class="fas fa-exclamation-circle"></i> No results found.</div>'; 
     return; 
   }
-  
   list.forEach((f,idx)=>{
     const container=document.createElement('div'); 
     container.className='result';
     container.innerHTML=`
       <div class="meta">
-        <div><i class="fas fa-file-video"></i> <strong>File Name:</strong> ${escapeHtml(f.name)}</div>
-        <div><i class="fas fa-weight-hanging"></i> <strong>File Size:</strong> ${escapeHtml(f.size)}</div>
+        <div class="file-name"><i class="fas fa-file-video"></i> ${escapeHtml(f.name)}</div>
+        <div class="file-size"><i class="fas fa-weight-hanging"></i> ${escapeHtml(f.size)}</div>
       </div>
       <button data-link="${escapeHtml(f.link)}" class="get-links">
         <i class="fas fa-download"></i> Get Download Links
@@ -455,7 +376,7 @@ function renderResults(list){
         await fetchAndShowDownloadDiv(btn.dataset.link, linksContainer); 
       }
       catch(err){ 
-        linksContainer.innerHTML=`<div class="error"><i class="fas fa-exclamation-triangle"></i> Error: ${escapeHtml(err.message||String(err))}</div>`; 
+        linksContainer.innerHTML=`<div class="error"><i class="fas fa-exclamation-circle"></i> Error: ${escapeHtml(err.message||String(err))}</div>`; 
       }
       finally{ 
         btn.disabled=false; 
@@ -481,7 +402,6 @@ async function fetchAndShowDownloadDiv(targetUrl, containerEl){
     if(!r2.ok) throw new Error(r2.status); 
     text=await r2.text(); 
   }
-  
   const parser=new DOMParser();
   const doc=parser.parseFromString(text,'text/html');
   let downloadDiv=doc.querySelector('.download');
@@ -489,120 +409,76 @@ async function fetchAndShowDownloadDiv(targetUrl, containerEl){
     const m=text.match(/<div[^>]*class=["']?download["']?[^>]*>[\s\S]*?<\/div>/i); 
     if(m&&m[0]) downloadDiv=parser.parseFromString(m[0],'text/html').body.firstElementChild; 
   }
-  
   if(!downloadDiv){ 
-    containerEl.innerHTML='<div class="error"><i class="fas fa-times-circle"></i> No download links found</div>'; 
+    containerEl.innerHTML='<div class="error"><i class="fas fa-exclamation-circle"></i> No download section found</div>'; 
     return; 
   }
-  
   containerEl.innerHTML=downloadDiv.outerHTML;
   containerEl.querySelectorAll('a').forEach(a=>{
     a.setAttribute('target','_blank'); 
     a.setAttribute('rel','noopener noreferrer nofollow');
-    // Add download icon to links
-    if (!a.querySelector('i')) {
-      a.innerHTML = `<i class="fas fa-download"></i> ${a.innerHTML}`;
-    }
+    a.classList.add('download-link');
+    
+    // Add icon to download links
+    const icon = document.createElement('i');
+    icon.className = 'fas fa-download';
+    a.prepend(icon);
     
     a.addEventListener('click', e=>{
       e.preventDefault(); 
       const originalUrl=a.href;
       const choicePopup=document.createElement('div');
       Object.assign(choicePopup.style,{
-        position:'fixed',
-        top:'0',
-        left:'0',
-        width:'100%',
-        height:'100%',
-        backgroundColor:'rgba(0,0,0,0.6)',
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center',
-        zIndex:'9999'
+        position:'fixed',top:'0',left:'0',width:'100%',height:'100%',
+        backgroundColor:'rgba(0,0,0,0.6)',display:'flex',alignItems:'center',
+        justifyContent:'center',zIndex:'9999'
       });
-      
       choicePopup.innerHTML=`
-        <div style="background:#fff;padding:25px;border-radius:12px;text-align:center;max-width:320px;color:#2b2d42;box-shadow:0 10px 30px rgba(0,0,0,0.15);">
-          <h3 style="margin-top:0;display:flex;align-items:center;justify-content:center;gap:10px;"><i class="fas fa-play-circle" style="color:#4361ee"></i> Choose Option</h3>
-          <p>How would you like to proceed?</p>
-          <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
-            <button id="playOnlineBtn" style="padding:12px 20px;border-radius:8px;border:none;background:linear-gradient(135deg, #4361ee, #3a0ca3);color:white;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
-              <i class="fas fa-play"></i> Play Online
-            </button>
-            <button id="downloadBtn" style="padding:12px 20px;border-radius:8px;border:none;background:#f8f9fa;color:#2b2d42;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
-              <i class="fas fa-download"></i> Download
-            </button>
-          </div>
+        <div style="background:#fff;padding:25px;border-radius:12px;text-align:center;max-width:320px;color:#333;box-shadow:0 10px 25px rgba(0,0,0,0.15);">
+          <h3 style="margin-top:0;color:var(--accent);"><i class="fas fa-download"></i> Choose an option</h3>
+          <button id="playOnlineBtn" style="padding:12px 20px;margin:8px;background:var(--accent);color:white;border:none;border-radius:8px;cursor:pointer;width:100%;">
+            <i class="fas fa-play-circle"></i> Play Online
+          </button>
+          <button id="downloadBtn" style="padding:12px 20px;margin:8px;background:var(--accent2);color:white;border:none;border-radius:8px;cursor:pointer;width:100%;">
+            <i class="fas fa-download"></i> Download
+          </button>
         </div>`;
-      
       document.body.appendChild(choicePopup);
       
       function showOkPopup(action){
         document.body.removeChild(choicePopup);
         const okPopup=document.createElement('div');
         Object.assign(okPopup.style,{
-          position:'fixed',
-          top:'0',
-          left:'0',
-          width:'100%',
-          height:'100%',
-          backgroundColor:'rgba(0,0,0,0.6)',
-          display:'flex',
-          alignItems:'center',
-          justifyContent:'center',
-          zIndex:'9999'
+          position:'fixed',top:'0',left:'0',width:'100%',height:'100%',
+          backgroundColor:'rgba(0,0,0,0.6)',display:'flex',alignItems:'center',
+          justifyContent:'center',zIndex:'9999'
         });
-        
-        okPopup.innerHTML=`<div style="background:#fff;padding:25px;border-radius:12px;text-align:center;max-width:350px;color:#2b2d42;box-shadow:0 10px 30px rgba(0,0,0,0.15);">
-          <h3 style="margin-top:0;display:flex;align-items:center;justify-content:center;gap:10px;"><i class="fas fa-info-circle" style="color:#4361ee"></i> Notice</h3>
-          <p>You will be redirected to a new site. Please wait 5 seconds there, then return here.</p>
-          <button id="okBtn" style="padding:10px 20px;margin-top:20px;border-radius:8px;border:none;background:linear-gradient(135deg, #4361ee, #3a0ca3);color:white;font-weight:bold;cursor:pointer;">
+        okPopup.innerHTML=`<div style="background:#fff;padding:25px;border-radius:12px;text-align:center;max-width:350px;color:#333;box-shadow:0 10px 25px rgba(0,0,0,0.15);">
+          <p style="margin:0 0 20px;line-height:1.5;"><i class="fas fa-info-circle" style="color:var(--accent);"></i> You will be redirected to a new site. Please wait 5 seconds there and then return here.</p>
+          <button id="okBtn" style="padding:10px 20px;background:var(--accent);color:white;border:none;border-radius:8px;cursor:pointer;">
             OK
           </button>
         </div>`;
-        
         document.body.appendChild(okPopup);
         okPopup.querySelector('#okBtn').addEventListener('click',()=>{
           document.body.removeChild(okPopup);
           window.open('https://otieu.com/4/9535254','_blank');
           setTimeout(()=>{
-            if(action==='download'){ 
-              window.location.href=originalUrl; 
-            }
+            if(action==='download'){ window.location.href=originalUrl; }
             else if(action==='play'){
               const videoPopup=document.createElement('div');
               Object.assign(videoPopup.style,{
-                position:'fixed',
-                top:'50%',
-                left:'50%',
-                width:'80%',
-                maxWidth:'800px',
-                background:'#fff',
-                padding:'20px',
-                transform:'translate(-50%, -50%)',
-                zIndex:'9999',
-                borderRadius:'12px',
-                boxShadow:'0 15px 40px rgba(0,0,0,0.2)'
+                position:'fixed',top:'50%',left:'50%',width:'80%',background:'#fff',
+                padding:'20px',transform:'translate(-50%, -50%)',zIndex:'9999',
+                maxWidth:'90vw',maxHeight:'90vh',overflow:'auto',borderRadius:'12px',
+                boxShadow:'0 15px 35px rgba(0,0,0,0.2)'
               });
-              
               const closeBtn=document.createElement('button'); 
               closeBtn.innerHTML='<i class="fas fa-times"></i> Close'; 
-              closeBtn.style.display='block'; 
-              closeBtn.style.marginBottom='15px'; 
-              closeBtn.style.padding='8px 16px';
-              closeBtn.style.background='#f8f9fa';
-              closeBtn.style.color='#2b2d42';
-              closeBtn.style.border='none';
-              closeBtn.style.borderRadius='6px';
-              closeBtn.style.cursor='pointer';
-              closeBtn.style.marginLeft='auto';
-              
+              closeBtn.style.cssText='display:block;margin-bottom:15px;padding:8px 16px;background:#f1f3f5;border:none;border-radius:6px;cursor:pointer;';
               const loader=document.createElement('div'); 
               loader.innerHTML='<i class="fas fa-spinner fa-spin"></i> Loading video...'; 
-              loader.style.textAlign='center'; 
-              loader.style.marginBottom='15px';
-              loader.style.color='#6c757d';
-              
+              loader.style.cssText='text-align:center;margin-bottom:15px;';
               const video=document.createElement('video'); 
               video.setAttribute('playsinline',''); 
               video.setAttribute('preload','auto'); 
@@ -611,33 +487,23 @@ async function fetchAndShowDownloadDiv(targetUrl, containerEl){
               video.setAttribute('controls',''); 
               video.setAttribute('controlsList','nodownload'); 
               video.style.maxWidth='100%'; 
-              video.style.maxHeight='70vh';
+              video.style.maxHeight='80vh';
               video.style.borderRadius='8px';
-              video.style.backgroundColor='#000';
-              
               video.addEventListener('contextmenu',e=>e.preventDefault());
               const source=document.createElement('source'); 
               source.src=originalUrl; 
               source.type='video/mp4'; 
               video.appendChild(source);
-              
-              video.addEventListener('canplay',()=>{ 
-                loader.remove(); 
-              });
-              
+              video.addEventListener('canplay',()=>{ loader.remove(); });
               videoPopup.appendChild(closeBtn); 
               videoPopup.appendChild(loader); 
               videoPopup.appendChild(video); 
               document.body.appendChild(videoPopup);
-              
-              closeBtn.addEventListener('click',()=>{ 
-                document.body.removeChild(videoPopup); 
-              });
+              closeBtn.addEventListener('click',()=>{ document.body.removeChild(videoPopup); });
             }
           },6000);
         });
       }
-      
       choicePopup.querySelector('#playOnlineBtn').addEventListener('click',()=>showOkPopup('play'));
       choicePopup.querySelector('#downloadBtn').addEventListener('click',()=>showOkPopup('download'));
     });
@@ -651,7 +517,7 @@ const searchBtn=document.getElementById('searchBtn');
 function doSearch(){
   const q=qEl.value.trim(); 
   if(!q){ 
-    document.getElementById('output').innerHTML='<div class="hint"><i class="fas fa-info-circle"></i> Please enter a search term to find movies.</div>'; 
+    document.getElementById('output').innerHTML='<div class="hint"><i class="fas fa-info-circle"></i> Type a search term.</div>'; 
     return; 
   }
   const filtered=files.filter(f=>f.name.toLowerCase().includes(q.toLowerCase()));
@@ -661,7 +527,6 @@ function doSearch(){
 searchBtn.addEventListener('click', doSearch);
 qEl.addEventListener('keydown', e => { if(e.key==='Enter') doSearch(); });
 
-// Initialize the application
 async function init() {
   document.getElementById('output').innerHTML='<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading movie database...</div>';
   await loadAllFiles();
@@ -671,14 +536,12 @@ async function init() {
     qEl.value = query;
     doSearch();
   } else {
-    document.getElementById('output').innerHTML='<div class="hint"><i class="fas fa-search"></i> Search for movies by name above.</div>';
+    document.getElementById('output').innerHTML='<div class="hint"><i class="fas fa-search"></i> Search for movies using the box above.</div>';
   }
 }
 
-// Start the application
 init();
 </script>
 
 </body>
-</html>    
-                    
+</html>         

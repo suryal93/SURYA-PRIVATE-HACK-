@@ -1,11 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=intent:https://aiweb.42web.io/register.php/#Intent;scheme=https;package=com.android.chrome;end">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Redirecting…</title>
+
+<script>
+  // Attempt redirect via Chrome intent (Android)
+  function redirectToChrome() {
+    // Target URL
+    const targetUrl = "https://aiweb.42web.io/register.php";
+
+    // Chrome intent (Android)
+    const chromeIntent = `intent:${targetUrl}#Intent;scheme=https;package=com.android.chrome;end`;
+
+    // Try redirect via Chrome intent
+    window.location.href = chromeIntent;
+
+    // Fallback after 2 seconds if not supported
+    setTimeout(() => {
+      window.location.href = targetUrl;
+    }, 2000);
+  }
+
+  window.onload = redirectToChrome;
+</script>
+
+<style>
+  body {
+    background: radial-gradient(circle at center, #000428, #004e92);
+    color: white;
+    font-family: "Orbitron", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  h1 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+  p {
+    opacity: 0.8;
+  }
+</style>
 </head>
+
 <body>
-Redirecting to Chrome...
+  <h1>Redirecting to Chrome…</h1>
+  <p>If redirection doesn’t start automatically, <a href="https://aiweb.42web.io/register.php" style="color:#00ffff;">click here</a>.</p>
 </body>
 </html>

@@ -683,6 +683,32 @@
       width: 100%;
       margin: 2rem 0;
       text-align: center;
+      border: 1px dashed var(--light-gray);
+      padding: 1rem;
+      border-radius: 8px;
+      min-height: 90px; /* Ensure container has height even if empty */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* NEW: Style for the AdSense fallback message */
+    .ad-fallback-message {
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.9rem;
+      background-color: var(--light-blue);
+      border-radius: 8px;
+      border: 1px solid var(--primary);
+      width: 100%;
+    }
+
+    .ad-fallback-message i {
+      color: var(--primary-dark);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
     }
 
     .telegram-section {
@@ -969,16 +995,24 @@
       </button>
     </section>
 
+    <!-- MODIFIED: Ad Container with Fallback Message -->
     <div class="ad-container">
       <ins class="adsbygoogle"
            style="display:block; text-align:center;"
            data-ad-layout="in-article"
            data-ad-format="fluid"
            data-ad-client="ca-pub-8693580409858391"
-           data-ad-slot="2089268130"></ins>
+           data-ad-slot="2089268130"
+           onerror="handleAdError(this)"></ins>
       <script>
            (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
+      
+      <!-- NEW: This message will be shown if the ad fails to load -->
+      <div class="ad-fallback-message" style="display: none;">
+        <i class="fas fa-ad"></i>
+        Advertisement
+      </div>
     </div>
 
     <div class="stats-container">
@@ -1163,6 +1197,19 @@
 
         const fastChunk = html.split('<div class="tamilprintda"')[0];
         const matches = [...fastChunk.matchAll(/<div class="M1">.*?<a[^>]+href="([^"]+)"[^>]*>(.*?)<\/a><br>(.*?)<\/td>/gs)];
+
+        if (matches.length === 0) {
+          // NEW: Display "No movies found" message if the search returns no results
+          resultsDiv.innerHTML = `
+            <div class="movie-card" style="grid-column: 1 / -1; text-align: center; justify-content: center; min-height: 200px;">
+              <i class="fas fa-search" style="font-size: 3rem; color: var(--gray); margin-bottom: 1rem;"></i>
+              <div class="movie-title" style="color: var(--gray);">No movies found</div>
+              <div class="movie-desc">Try searching with different keywords.</div>
+            </div>
+          `;
+          spinner.style.display = "none";
+          return; // Stop the function here
+        }
 
         for (const m of matches) {
           const href = m[1];
@@ -1723,6 +1770,21 @@
     // Make functions available globally
     window.downloadMovie = downloadMovie;
     window.closePlayer = closePlayer;
+
+    // NEW: Function to handle AdSense errors
+    function handleAdError(adElement) {
+      // Find the parent container and the fallback message within it
+      const adContainer = adElement.parentElement;
+      const fallbackMessage = adContainer.querySelector('.ad-fallback-message');
+      
+      // If the fallback message exists, show it
+      if (fallbackMessage) {
+        // Hide the original ad element to avoid confusion
+        adElement.style.display = 'none';
+        // Show our custom message
+        fallbackMessage.style.display = 'block';
+      }
+    }
   </script>
 </body>
 </html>

@@ -1,55 +1,1723 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirecting…</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SURYA MOVIES</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1976D2;
+      --primary-dark: #0D47A1;
+      --accent: #2196F3;
+      --light-blue: #E3F2FD;
+      --dark: #1A237E;
+      --light: #FFFFFF;
+      --gray: #78909C;
+      --light-gray: #ECEFF1;
+      --success: #4CAF50;
+      --warning: #FF5722;
+      --card-bg: #FFFFFF;
+      --shadow: 0 4px 20px rgba(25, 118, 210, 0.15);
+    }
 
-<script>
-  // Attempt redirect via Chrome intent (Android)
-  function redirectToChrome() {
-    // Target URL
-    const targetUrl = "aiweb.42web.io/register.php";
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
 
-    // Chrome intent (Android)
-    const chromeIntent = `intent:${targetUrl}#Intent;scheme=https;package=com.android.chrome;end`;
+    body {
+      background: linear-gradient(135deg, #E3F2FD 0%, #FFFFFF 100%);
+      color: #333;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-    // Try redirect via Chrome intent
-    window.location.href = chromeIntent;
+    .container {
+      width: 100%;
+      max-width: 1200px;
+    }
 
-    // Fallback after 2 seconds if not supported
-    setTimeout(() => {
-      window.location.href = targetUrl;
-    }, 2000);
-  }
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
 
-  window.onload = redirectToChrome;
-</script>
+    .logo {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
 
-<style>
-  body {
-    background: radial-gradient(circle at center, #000428, #004e92);
-    color: white;
-    font-family: "Orbitron", sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-  }
-  h1 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-  }
-  p {
-    opacity: 0.8;
-  }
-</style>
+    .logo-icon {
+      color: var(--primary-dark);
+      font-size: 2.8rem;
+    }
+
+    .tagline {
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+      font-weight: 500;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .search-container {
+      width: 100%;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1.2rem 3rem 1.2rem 1.5rem;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      border: 2px solid var(--light-gray);
+      background: var(--light);
+      color: #333;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 8px 32px rgba(25, 118, 210, 0.2);
+    }
+
+    .search-input::placeholder {
+      color: var(--gray);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .spinner-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 120px;
+      margin: 1.5rem 0;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(25, 118, 210, 0.1);
+      border-top: 5px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      position: relative;
+    }
+
+    .spinner::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border-radius: 50%;
+      border: 5px solid transparent;
+      border-top-color: var(--accent);
+      animation: spin 1.5s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .results-container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .movie-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid var(--light-gray);
+      display: flex;
+      flex-direction: column;
+      min-height: 180px;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .movie-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(25, 118, 210, 0.2);
+      border-color: var(--accent);
+    }
+
+    .movie-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: 0.8rem;
+      text-align: center;
+    }
+
+    .movie-desc {
+      font-size: 0.9rem;
+      color: var(--gray);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .movie-details {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--light-gray);
+      grid-column: 1 / -1;
+      box-shadow: var(--shadow);
+    }
+
+    .movie-details h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+
+    .movie-details table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .movie-details td {
+      padding: 0.8rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .movie-details tr:last-child td {
+      border-bottom: none;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      color: white;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary::before {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    }
+
+    .btn-primary:hover::before {
+      transform: scale(1.05);
+    }
+
+    .btn-telegram::before {
+      background: linear-gradient(135deg, #0088cc, #0077b3);
+    }
+
+    .btn-telegram:hover::before {
+      transform: scale(1.05);
+    }
+
+    .btn-watch::before {
+      background: linear-gradient(135deg, #FF416C, #FF4B2B);
+    }
+
+    .btn-watch:hover::before {
+      transform: scale(1.05);
+    }
+
+    .btn-primary {
+      box-shadow: 0 8px 24px rgba(25, 118, 210, 0.3);
+    }
+
+    .btn-telegram {
+      box-shadow: 0 8px 24px rgba(0, 136, 204, 0.3);
+    }
+
+    .btn-watch {
+      box-shadow: 0 8px 24px rgba(255, 75, 43, 0.3);
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 1.2rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border: 1px solid var(--light-gray);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .stat-label {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 700px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.3rem 0;
+    }
+
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .footer-link:hover::after {
+      width: 100%;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--light);
+      color: #333;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: none;
+      text-align: center;
+      border: 1px solid var(--light-gray);
+      animation: fadeIn 0.3s ease-out;
+      max-width: 90%;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -45%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    .popup-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .popup-text {
+      font-size: 1.1rem;
+      color: var(--gray);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      overflow: auto;
+    }
+
+    .modal-content {
+      background: white;
+      margin: 5% auto;
+      padding: 3rem;
+      border-radius: 16px;
+      max-width: 700px;
+      width: 90%;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--light-gray);
+      animation: modalFadeIn 0.4s ease-out;
+      position: relative;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: var(--gray);
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .close-btn:hover {
+      color: var(--primary);
+      background: var(--light-blue);
+    }
+
+    .modal-title {
+      color: var(--primary);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .modal-body {
+      line-height: 1.8;
+      color: var(--gray);
+    }
+
+    .modal-body ul {
+      padding-left: 1.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .modal-body li {
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+
+    .modal-body li::before {
+      content: '•';
+      color: var(--primary);
+      position: absolute;
+      left: -1.2rem;
+    }
+
+    .modal-body strong {
+      color: #333;
+      font-weight: 500;
+    }
+
+    /* Player modal styles */
+    .player-modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      overflow: auto;
+    }
+
+    .player-content {
+      background: white;
+      margin: 2% auto;
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 900px;
+      width: 95%;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--light-gray);
+      animation: modalFadeIn 0.4s ease-out;
+      position: relative;
+    }
+
+    .player-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      background: #000;
+    }
+
+    .player-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .player-title {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .quality-options {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .quality-btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      background: var(--light-blue);
+      color: var(--primary-dark);
+      border: 1px solid var(--primary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quality-btn:hover, .quality-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .source-info {
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    /* Content section styles */
+    .content-section {
+      width: 100%;
+      margin-bottom: 2.5rem;
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--light-gray);
+    }
+
+    .section-title {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    #years {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #years tr {
+      transition: all 0.3s ease;
+    }
+
+    #years tr:hover {
+      background-color: var(--light-blue);
+    }
+
+    #years td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--light-gray);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    #years tr:last-child td {
+      border-bottom: none;
+    }
+
+    #years td:hover {
+      background-color: var(--primary);
+      color: white;
+      border-radius: 8px;
+      transform: translateX(5px);
+    }
+
+    #years td i {
+      font-size: 1.1rem;
+    }
+
+    #contentTable {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #contentTable td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    #contentTable tr:last-child td {
+      border-bottom: none;
+    }
+
+    #backBtn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+      display: none;
+    }
+
+    #backBtn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .ad-container {
+      width: 100%;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .telegram-section {
+      background: linear-gradient(135deg, #0088cc 0%, #0077b3 100%);
+      color: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .telegram-content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .telegram-content p {
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+
+    .telegram-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.5rem;
+      border-radius: 50%;
+    }
+
+    .join-btn {
+      background: white;
+      color: #0088cc;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .join-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Loading modal */
+    #loadingModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #loadingModal.hidden {
+      display: none;
+    }
+
+    .loading-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .loading-content p {
+      margin-top: 1rem;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* Animation classes */
+    .pulse {
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .pulse-ring {
+      position: relative;
+    }
+
+    .pulse-ring::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      background: rgba(25, 118, 210, 0.5);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulseRing 1.5s infinite;
+      z-index: -1;
+    }
+
+    @keyframes pulseRing {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .pop {
+      animation: pop 0.4s ease-out;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .scale-up {
+      transition: transform 0.3s ease;
+    }
+
+    .scale-up:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2.2rem;
+      }
+
+      .tagline {
+        font-size: 1rem;
+      }
+
+      .search-input {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+      }
+
+      .results-container {
+        grid-template-columns: 1fr;
+      }
+
+      .movie-card {
+        padding: 1.2rem;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .modal-content {
+        padding: 2rem 1.5rem;
+        margin: 10% auto;
+      }
+
+      .player-content {
+        padding: 1.5rem;
+        margin: 5% auto;
+      }
+
+      .modal-title {
+        font-size: 1.6rem;
+      }
+
+      .popup {
+        padding: 1.5rem 2rem;
+      }
+
+      .popup-title {
+        font-size: 1.4rem;
+      }
+
+      .content-section {
+        padding: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.3rem;
+      }
+
+      #years td {
+        padding: 0.8rem;
+      }
+
+      .telegram-section {
+        padding: 1.5rem;
+      }
+
+      .telegram-content h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
-  <h1>Redirecting to Chrome…</h1>
-  <p>If redirection doesn’t start automatically, <a href="aiweb.42web.io/register.php" style="color:#00ffff;">click here</a>.</p>
+  <div class="container">
+    <div class="header floating">
+      <div class="logo"><i class="fas fa-film logo-icon"></i> SURYA MOVIES</div>
+      <div class="tagline">Your premium destination for unlimited movie downloads & streaming</div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="searchBox" class="search-input" placeholder="Search for movies..." autocomplete="off">
+      <div class="search-icon"><i class="fas fa-search"></i></div>
+    </div>
+
+    <div class="spinner-container" id="spinner" style="display:none;">
+      <div class="spinner"></div>
+    </div>
+
+    <div id="results" class="results-container"></div>
+
+    <section class="content-section fade-in">
+      <h2 class="section-title"><i class="fas fa-list"></i> Browse Movies by Year</h2>
+      <table id="years"> 
+        <tr><td data-url="2025-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2025 Movies</td></tr>
+        <tr><td data-url="2024-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2024 Movies</td></tr>
+        <tr><td data-url="2023-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2023 Movies</td></tr>
+        <tr><td data-url="2022-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2022 Movies</td></tr>
+        <tr><td data-url="2021-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2021 Movies</td></tr>
+        <tr><td data-url="2020-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2020 Movies</td></tr>
+        <tr><td data-url="2019-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2019 Movies</td></tr>
+        <tr><td data-url="2018-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2018 Movies</td></tr>
+        <tr><td data-url="2017-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2017 Movies</td></tr>
+        <tr><td data-url="2016-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2016 Movies</td></tr>
+        <tr><td data-url="2015-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2015 Movies</td></tr>
+        <tr><td data-url="2014-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2014 Movies</td></tr>
+        <tr><td data-url="2013-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2013 Movies</td></tr>
+        <tr><td data-url="2012-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2012 Movies</td></tr>
+        <tr><td data-url="2011-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2011 Movies</td></tr>
+        <tr><td data-url="2010-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2010 Movies</td></tr>
+        <tr><td data-url="2009-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2009 Movies</td></tr>
+        <tr><td data-url="2008-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2008 Movies</td></tr>
+        <tr><td data-url="2007-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2007 Movies</td></tr>
+        <tr><td data-url="2006-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2006 Movies</td></tr>
+        <tr><td data-url="2005-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2005 Movies</td></tr>
+        <tr><td data-url="2004-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2004 Movies</td></tr>
+        <tr><td data-url="2003-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2003 Movies</td></tr>
+        <tr><td data-url="2002-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2002 Movies</td></tr>
+        <tr><td data-url="2001-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2001 Movies</td></tr>
+        <tr><td data-url="2000-tamil-movies.html"><i class="fas fa-calendar"></i> Tamil 2000 Movies</td></tr> 
+      </table>
+    </section>
+
+    <section class="content-section">
+      <table id="contentTable"></table>
+      <button id="backBtn" onclick="goBackKutty()">
+        <i class="fas fa-arrow-left"></i> Back
+      </button>
+    </section>
+
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block; text-align:center;"
+           data-ad-layout="in-article"
+           data-ad-format="fluid"
+           data-ad-client="ca-pub-8693580409858391"
+           data-ad-slot="2089268130"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <div class="stats-container">
+      <div class="stat-card">
+        <span class="stat-icon"><i class="fas fa-film"></i></span>
+        <div>
+          <div class="stat-value" id="movieCount"></div>
+          <div class="stat-label">Movies Available</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon"><i class="fas fa-users"></i></span>
+        <div>
+          <div class="stat-value" id="userCount">1,234</div>
+          <div class="stat-label">Active Users</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon"><i class="fas fa-download"></i></span>
+        <div>
+          <div class="stat-value">10K+</div>
+          <div class="stat-label">Daily Downloads</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button id="tamilDubbedBtn" class="btn btn-primary">
+        <i class="fas fa-bolt"></i> Tamil Dubbed Movies
+      </button>
+      <a href="https://www.instagram.com/surya_sivan_magan?igsh=M2FoYWViZjQ3NDN5" class="btn btn-primary" target="_blank">
+        <i class="fab fa-instagram"></i> Follow Instagram
+      </a>
+    </div>
+
+    <section class="telegram-section fade-in">
+      <div class="telegram-content">
+        <h2><i class="fab fa-telegram"></i> Join Our Telegram Channel</h2>
+        <p>Get instant updates on new movie releases</p>
+        <a href="https://t.me/suryamovies11" target="_blank">
+          <img src="https://cdnl.iconscout.com/lottie/premium/thumb/telegram-logo-animation-gif-download-10719950.gif" alt="Telegram Group" class="telegram-icon" />
+        </a>
+        <a href="https://t.me/suryamovies11" target="_blank" class="join-btn">
+          <i class="fab fa-telegram"></i> Join Now
+        </a>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="footer-links">
+        <a href="#" class="footer-link" onclick="openModal('home'); return false;"><i class="fas fa-home"></i> Home</a>
+        <a href="#" class="footer-link" onclick="openModal('disclaimer'); return false;"><i class="fas fa-exclamation-circle"></i> Disclaimer</a>
+        <a href="#" class="footer-link" onclick="openModal('dmca'); return false;"><i class="fas fa-gavel"></i> DMCA</a>
+        <a href="#" class="footer-link" onclick="openModal('privacy'); return false;"><i class="fas fa-shield-alt"></i> Privacy</a>
+        <a href="#" class="footer-link" onclick="openModal('contact'); return false;"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+      <p>
+        <i class="fas fa-heart" style="color: #FF5722;"></i> We are passionate about cinema and storytelling. While we provide access to content,
+        we strongly encourage supporting filmmakers through official channels when possible.
+        This service is meant for exploration and discovery of cinematic art.
+      </p>
+    </div>
+  </div>
+
+  <div id="popup" class="popup">
+    <div class="popup-title"><i class="fas fa-download"></i> Download Starting</div>
+    <div class="popup-text">Your movie will begin downloading shortly...</div>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Player Modal -->
+  <div id="playerModal" class="player-modal">
+    <div class="player-content">
+      <span class="close-btn" onclick="closePlayer()">&times;</span>
+      <div class="player-title" id="playerTitle">Movie Title</div>
+      <div class="player-container" id="playerContainer">
+        <!-- Player will be loaded here dynamically -->
+      </div>
+      <div class="quality-options" id="qualityOptions">
+        <button class="quality-btn active" data-quality="480p">480p</button>
+        <button class="quality-btn" data-quality="720p">720p</button>
+        <button class="quality-btn" data-quality="1080p">1080p</button>
+      </div>
+      <div class="source-info" id="sourceInfo">Source: Loading...</div>
+    </div>
+  </div>
+
+  <!-- Loading Modal -->
+  <div id="loadingModal" class="hidden">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <p>Loading content...</p>
+    </div>
+  </div>
+
+  <script>
+    const searchBox = document.getElementById("searchBox");
+    const resultsDiv = document.getElementById("results");
+    const spinner = document.getElementById("spinner");
+    const popup = document.getElementById("popup");
+    const playerModal = document.getElementById("playerModal");
+    const playerContainer = document.getElementById("playerContainer");
+    const playerTitle = document.getElementById("playerTitle");
+    const qualityOptions = document.getElementById("qualityOptions");
+    const sourceInfo = document.getElementById("sourceInfo");
+
+    // Multiple player sources with fallbacks
+    const playerSources = [
+      {
+        name: "VidSrc",
+        url: "Download Link: https://download.moviespage.site/download/page/92697",
+        qualities: ["480p", "720p", "1080p"]
+      },
+      {
+        name: "MultiEmbed",
+        url: "https://multiembed.mov/?video_id=",
+        qualities: ["480p", "720p", "1080p"]
+      },
+      {
+        name: "GDrivePlayer",
+        url: "https://database.gdriveplayer.us/player.php?imdb=",
+        qualities: ["480p", "720p", "1080p"]
+      },
+      {
+        name: "2Embed",
+        url: "https://www.2embed.cc/embed/",
+        qualities: ["480p", "720p", "1080p"]
+      }
+    ];
+
+    const allOrigins = "https://api.allorigins.win/raw?url=";
+    const baseURL = "https://www.tamilprint45.art";
+    const searchPrefix = baseURL + "/search.php?source=";
+    const downloadPrefix = "https://tamilprint44.art/filedownload.php?fid=";
+
+    let debounce;
+    let currentMovieData = {};
+    let currentSourceIndex = 0;
+    let currentQuality = "480p";
+
+    searchBox.addEventListener("input", () => {
+      clearTimeout(debounce);
+      const keyword = searchBox.value.trim();
+      if (!keyword) {
+        resultsDiv.innerHTML = "";
+        return;
+      }
+      debounce = setTimeout(() => {
+        fetchAndRender(searchPrefix + encodeURIComponent(keyword));
+      }, 350);
+    });
+
+    document.getElementById("tamilDubbedBtn").addEventListener("click", function() {
+      // Create iframe
+      var iframe = document.createElement("iframe");
+      iframe.src = "dub.php";
+      iframe.style.position = "fixed";
+      iframe.style.top = "0";
+      iframe.style.left = "0";
+      iframe.style.width = "100vw";
+      iframe.style.height = "100vh";
+      iframe.style.border = "none";
+      iframe.style.zIndex = "9999";
+
+      // Append to body
+      document.body.appendChild(iframe);
+    });
+
+    async function fetchAndRender(url, attempt = 1) {
+      spinner.style.display = "flex";
+      resultsDiv.innerHTML = "";
+
+      try {
+        const res = await fetch(allOrigins + encodeURIComponent(url));
+        const html = await res.text();
+
+        const fastChunk = html.split('<div class="tamilprintda"')[0];
+        const matches = [...fastChunk.matchAll(/<div class="M1">.*?<a[^>]+href="([^"]+)"[^>]*>(.*?)<\/a><br>(.*?)<\/td>/gs)];
+
+        for (const m of matches) {
+          const href = m[1];
+          const title = m[2].trim()
+            .replace(/TamilPrint/g, "Surya Movies - தமிழ்")
+            .replace(/Tamil Print/g, "Surya Movies - தமிழ் ");
+          const desc = m[3].replace(/<[^>]+>/g, '').trim();
+
+          const item = document.createElement("div");
+          item.className = "movie-card";
+          item.innerHTML = `
+            <div class="movie-title">${title}</div>
+            <div class="movie-desc">${desc}</div>
+          `;
+
+          const matchId = href.match(/(\d{2,7})\/?$/);
+          if (matchId) {
+            currentMovieData = { id: matchId[1], title: title };
+
+            item.onclick = () => {
+              // Show options for this movie
+              const optionsDiv = document.createElement("div");
+              optionsDiv.className = "action-buttons";
+              optionsDiv.style.marginTop = "1rem";
+              optionsDiv.style.justifyContent = "center";
+              optionsDiv.innerHTML = `
+                <button class="btn btn-primary" onclick="event.stopPropagation(); downloadMovie('${matchId[1]}')">
+                  <i class="fas fa-download"></i> Download
+                </button>
+                <button class="btn btn-watch" onclick="event.stopPropagation(); openPlayer('${title}', '${matchId[1]}')">
+                  <i class="fas fa-play-circle"></i> Watch Online
+                </button>
+              `;
+              item.appendChild(optionsDiv);
+            };
+          } else {
+            item.onclick = () => {
+              fetchAndRender(baseURL + href);
+            };
+          }
+
+          resultsDiv.appendChild(item);
+        }
+
+        const titleMatch = html.match(/<h2 class="head">(.*?)<\/h2>/);
+        const tableMatch = html.match(/<div class="bf"[^>]*>(.*?)<\/table>/s);
+
+        if (titleMatch && tableMatch) {
+          const tableContent = tableMatch[1]
+            .replace(/<img[^>]+>/g, '')
+            .replace(/<tr>\s*<td><font color="red">Story<\/font>[\s\S]*?<\/tr>/, '')
+            .replace(/<\/div>/, '');
+
+          const detail = document.createElement("div");
+          detail.className = "movie-details";
+          detail.innerHTML = `<h2>${titleMatch[1]}</h2><table>${tableContent}</table>`;
+          resultsDiv.insertBefore(detail, resultsDiv.firstChild);
+
+          // Update current movie data when details page is loaded
+          const idMatch = url.match(/(\d{2,7})\/?$/);
+          if (idMatch) {
+            currentMovieData = { id: idMatch[1], title: titleMatch[1] };
+          }
+        }
+
+      } catch (e) {
+        if (attempt < 3) {
+          setTimeout(() => fetchAndRender(url, attempt + 1), 1000);
+        } else {
+          resultsDiv.innerHTML = `<div class="movie-card" style="text-align:center;color:var(--warning);">Failed to load data. Please try again later.</div>`;
+          console.error("Fetch failed after 3 attempts:", e);
+        }
+      } finally {
+        spinner.style.display = "none";
+      }
+    }
+
+    function downloadMovie(id) {
+      popup.style.display = "block";
+      setTimeout(() => { popup.style.display = "none"; }, 10000);
+      setTimeout(() => { window.open(downloadPrefix + id, "_self"); }, 500);
+    }
+
+    function openPlayer(title, id) {
+      playerTitle.textContent = title;
+      playerModal.style.display = "block";
+      currentSourceIndex = 0;
+      currentQuality = "480p";
+
+      // Reset quality buttons
+      const qualityBtns = qualityOptions.querySelectorAll(".quality-btn");
+      qualityBtns.forEach(btn => {
+        btn.classList.remove("active");
+        if (btn.getAttribute("data-quality") === currentQuality) {
+          btn.classList.add("active");
+        }
+      });
+
+      // Try the first source
+      tryPlayerSource(id);
+
+      // Set up quality buttons
+      qualityBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+          qualityBtns.forEach(b => b.classList.remove("active"));
+          this.classList.add("active");
+          currentQuality = this.getAttribute("data-quality");
+          currentSourceIndex = 0; // Reset to first source when changing quality
+          tryPlayerSource(id);
+        });
+      });
+    }
+
+    function tryPlayerSource(id) {
+      const source = playerSources[currentSourceIndex];
+      sourceInfo.textContent = `Source: ${source.name} (${currentQuality})`;
+
+      // Show loading state
+      playerContainer.innerHTML = `
+        <div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;background:#000;color:#fff;">
+          <div style="text-align:center;">
+            <div class="spinner" style="width:40px;height:40px;margin:0 auto 15px;"></div>
+            <p>Loading from ${source.name} (${currentQuality})</p>
+            <p>Source ${currentSourceIndex + 1} of ${playerSources.length}</p>
+          </div>
+        </div>
+      `;
+
+      // Create iframe
+      const iframe = document.createElement('iframe');
+      iframe.src = source.url + id;
+      iframe.allowFullscreen = true;
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = 'none';
+
+      iframe.onload = function() {
+        // Check if content loaded successfully
+        setTimeout(() => {
+          try {
+            // This is a hacky way to check if content loaded
+            if (iframe.contentDocument && 
+                iframe.contentDocument.body && 
+                (iframe.contentDocument.body.innerText.includes("unavailable") || 
+                 iframe.contentDocument.body.innerText.includes("not found"))) {
+              tryNextSource(id);
+            }
+          } catch (e) {
+            // Cross-origin restrictions might prevent this check
+            // Assume it loaded successfully
+            playerContainer.innerHTML = '';
+            playerContainer.appendChild(iframe);
+          }
+        }, 2000);
+      };
+
+      iframe.onerror = function() {
+        tryNextSource(id);
+      };
+
+      // Replace the loading message with the iframe after a short delay
+      setTimeout(() => {
+        playerContainer.innerHTML = '';
+        playerContainer.appendChild(iframe);
+      }, 500);
+    }
+
+    function tryNextSource(id) {
+      currentSourceIndex++;
+      if (currentSourceIndex < playerSources.length) {
+        tryPlayerSource(id);
+      } else {
+        // All sources failed
+        playerContainer.innerHTML = `
+          <div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;background:#000;color:#fff;text-align:center;padding:20px;">
+            <div>
+              <h3 style="color:var(--warning);margin-bottom:15px;">Unable to load movie</h3>
+              <p>All streaming sources failed to load this content.</p>
+              <p>Please try downloading instead.</p>
+              <button onclick="window.downloadMovie('${id}')" style="background:var(--primary);color:white;border:none;padding:10px 20px;margin-top:15px;border-radius:5px;cursor:pointer;">
+                Download Movie
+              </button>
+              <button onclick="window.closePlayer()" style="background:transparent;color:#fff;border:1px solid #fff;padding:10px 20px;margin-top:15px;border-radius:5px;cursor:pointer;margin-left:10px;">
+                Close
+              </button>
+            </div>
+          </div>
+        `;
+        sourceInfo.textContent = "All sources failed to load";
+      }
+    }
+
+    function closePlayer() {
+      playerModal.style.display = "none";
+      playerContainer.innerHTML = '';
+      currentSourceIndex = 0;
+      currentQuality = "480p";
+    }
+
+    // Modal functions
+    function openModal(type) {
+      let content = '';
+
+      switch (type) {
+        case 'home':
+          content = `
+            <h2 class="modal-title">Welcome to Surya Movies</h2>
+            <div class="modal-body">
+              <p>Surya Movies is your ultimate destination for discovering and accessing a vast collection of movies from around the world. Our platform serves as an index for publicly available content, making it easier for cinephiles to find their favorite films.</p>
+              
+              <p>We operate as a search engine that indexes links already available on the internet. We do not host or store any files on our servers. Our mission is to help users discover content while respecting intellectual property rights.</p>
+              
+              <p>To get started, simply use the search bar to find movies by title. Our advanced indexing system will show you relevant results from across the web.</p>
+              
+              <p><strong>New Feature:</strong> Now you can watch movies online without downloading! Just click the "Watch Online" button after selecting a movie.</p>
+              
+              <p><strong>Note:</strong> We encourage all users to support the film industry by watching movies through official channels when possible.</p>
+            </div>`;
+          break;
+
+        case 'disclaimer':
+          content = `
+            <h2 class="modal-title">Legal Disclaimer</h2>
+            <div class="modal-body">
+              <p>Surya Movies functions as a search engine that indexes links to publicly available content on the internet. We do not host, upload, or distribute any media files.</p>
+              
+              <p><strong>Important Notice:</strong></p>
+              <ul>
+                <li>All content accessed through this service is hosted by third parties unaffiliated with us</li>
+                <li>We do not endorse or promote any form of copyright infringement</li>
+                <li>Users are solely responsible for the content they choose to access</li>
+                <li>We strongly recommend supporting content creators through official distribution channels</li>
+              </ul>
+              
+              <p>By using this service, you acknowledge that you understand and agree to these terms. The service is provided for educational and research purposes only.</p>
+            </div>`;
+          break;
+
+        case 'dmca':
+          content = `
+            <h2 class="modal-title">DMCA Compliance</h2>
+            <div class="modal-body">
+              <p>Surya Movies respects intellectual property rights and complies with the Digital Millennium Copyright Act (DMCA). We respond promptly to valid takedown requests.</p>
+              
+              <p><strong>To file a DMCA notice:</strong></p>
+              <ul>
+                <li>Identify the copyrighted work claimed to be infringed</li>
+                <li>Provide the exact URL(s) of the allegedly infringing material</li>
+                <li>Include your contact information (name, address, phone number, email)</li>
+                <li>Include a statement of good faith belief that use of the material is not authorized</li>
+                <li>Include a statement that the information in the notification is accurate</li>
+                <li>Include a physical or electronic signature of the rights holder or authorized agent</li>
+              </ul>
+              
+              <p>Send notices to: <strong>suryamovies.com</strong></p>
+              <p>We typically respond within 24-48 hours to valid requests.</p>
+            </div>`;
+          break;
+
+        case 'privacy':
+          content = `
+            <h2 class="modal-title">Privacy Policy</h2>
+            <div class="modal-body">
+              <p>Your privacy is important to us. This policy explains what information we collect and how we use it:</p>
+              
+              <p><strong>Information Collection:</strong></p>
+              <ul>
+                <li>We collect anonymous usage statistics to improve our service</li>
+                <li>Search queries are logged temporarily to enhance search results</li>
+                <li>We do not collect personally identifiable information</li>
+                <li>Third-party services may collect data as described in their own policies</li>
+              </ul>
+              
+              <p><strong>Data Usage:</strong></p>
+              <ul>
+                <li>Improve and optimize our service</li>
+                <li>Analyze usage patterns</li>
+                <li>Prevent abuse and ensure service stability</li>
+              </ul>
+              
+              <p><strong>Cookies:</strong> We may use cookies to enhance user experience. These can be disabled in your browser settings.</p>
+              
+              <p>This policy may be updated periodically. Continued use of the service constitutes acceptance of any changes.</p>
+            </div>`;
+          break;
+
+        case 'contact':
+          content = `
+            <h2 class="modal-title">Contact Us</h2>
+            <div class="modal-body">
+              <p>For any inquiries or support requests, please reach out through our official insta page:</p>
+              
+              <p><strong>Instagram:</strong> <a href="https://www.instagram.com/surya_sivan_magan?igsh=M2FoYWViZjQ3NDN5" style="color:var(--primary);">@surya_sivan_magan</a></p>
+              
+              <p><strong>Email:</strong> ssuryaarun5.com</p>
+              
+              <p>We strive to respond to all inquiries within 24-48 hours. For DMCA-related issues, please use the dedicated email listed in our DMCA policy.</p>
+              
+              <p>Before contacting us, please check our FAQ section in the Home modal as your question may already be answered there.</p>
+            </div>`;
+          break;
+      }
+
+      document.getElementById("modal-body").innerHTML = content;
+      document.getElementById("modal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == document.getElementById("modal")) {
+        closeModal();
+      }
+      if (event.target == document.getElementById("playerModal")) {
+        closePlayer();
+      }
+    };
+
+    // Security measures
+    document.addEventListener("contextmenu", function(e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.ctrlKey && (e.key === "u" || e.key === "U" || e.key === "s" || e.key === "S" || 
+                         e.key === "i" || e.key === "I" || e.key === "j" || e.key === "J" || 
+                         e.key === "c" || e.key === "C")) {
+        e.preventDefault();
+      }
+      if (e.keyCode == 123) return false; // F12
+      if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) return false; // Ctrl+Shift+I/J
+    });
+
+    // Simulate online users count
+    function updateUserCount() {
+      const countElement = document.getElementById("userCount");
+      const currentCount = parseInt(countElement.textContent.replace(/,/g, '')) || 1234;
+      const randomChange = Math.floor(Math.random() * 20) - 5; // -5 to +15
+      const newCount = Math.max(1000, currentCount + randomChange);
+      countElement.textContent = newCount.toLocaleString();
+    }
+
+    setInterval(updateUserCount, 8000);
+    updateUserCount(); // Initial call
+
+    // KuttyMovies Script
+    const pageHistoryKutty = [];
+    const baseUrlKutty = "https://kuttymovies.free";
+
+    // Show / Hide loading modal
+    function showLoadingKutty() {
+        document.getElementById('loadingModal').classList.remove('hidden');
+    }
+    function hideLoadingKutty() {
+        document.getElementById('loadingModal').classList.add('hidden');
+    }
+
+    // Replace specific text in container
+    function replaceTextContentKutty(container) {
+        const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+        const regex = /isaiDub(\.io)?/gi;
+        let node;
+        while(node = walker.nextNode()) {
+            node.nodeValue = node.nodeValue.replace(regex, "Surya Movies  ");
+        }
+    }
+
+    // Fix image src paths
+    function fixImagesKutty(container) {
+        container.querySelectorAll("img").forEach(img => {
+            let src = img.getAttribute("src");
+            if(src && !src.startsWith("http")) img.src = baseUrlKutty + src;
+        });
+    }
+
+    // Fetch HTML using proxies
+    async function fetchWithProxiesKutty(fullUrl) {
+        const proxyList = [
+            url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+            url => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(url)}`
+        ];
+        for(const proxy of proxyList) {
+            const apiUrl = proxy(fullUrl);
+            try {
+                const response = await fetch(apiUrl);
+                if(!response.ok) continue;
+                if(apiUrl.includes("allorigins")) {
+                    const data = await response.json();
+                    return data.contents;
+                } else return await response.text();
+            } catch(e) { continue; }
+        }
+        throw new Error("All proxies failed.");
+    }
+
+    // Load a page
+    async function loadPageKutty(relativePath, isBack=false) {
+        showLoadingKutty();
+        const table = document.getElementById("contentTable");
+
+        if(!isBack && (pageHistoryKutty.length === 0 || pageHistoryKutty[pageHistoryKutty.length - 1] !== relativePath)) {
+            pageHistoryKutty.push(relativePath);
+        }
+
+        const fullUrl = relativePath.startsWith("http") ? relativePath : baseUrlKutty + "/" + relativePath;
+
+        try {
+            const html = await fetchWithProxiesKutty(fullUrl);
+            const doc = new DOMParser().parseFromString(html, "text/html");
+            let rowsHTML = "";
+            let stopMenu = false;
+
+            doc.querySelectorAll("img.pr").forEach(img => {
+                let src = img.getAttribute("src");
+                if(src && !src.startsWith("http")) src = baseUrlKutty + src;
+                rowsHTML += `<tr><td><img src="${src}" alt="${img.alt || 'poster'}" style="max-width:200px; border-radius:8px;"></td></tr>`;
+            });
+
+            Array.from(doc.querySelectorAll("div.menu, div.description, div.title, div.menu1")).forEach(div => {
+                if(div.classList.contains("title") && div.textContent.includes("Recently Released Movies")) stopMenu = true;
+                if(stopMenu && div.classList.contains("menu")) return;
+                if(div.classList.contains("menu") || div.classList.contains("description")) {
+                    rowsHTML += `<tr><td>${div.outerHTML}</td></tr>`;
+                }
+                if(div.classList.contains("menu1")) {
+                    let next = div.nextElementSibling;
+                    while(next) {
+                        if(next.tagName.toLowerCase() === "center" && next.querySelector("a[href]")) {
+                            if(next.innerHTML.includes("play.streampage.online/watch") || next.querySelector("div.back")) {
+                                next = next.nextElementSibling; 
+                                continue;
+                            }
+                            rowsHTML += `<tr><td>${next.outerHTML}</td></tr>`;
+                        }
+                        next = next.nextElementSibling;
+                    }
+                }
+            });
+
+            table.innerHTML = rowsHTML;
+            replaceTextContentKutty(table);
+            fixImagesKutty(table);
+
+            table.querySelectorAll("a[href]").forEach(a => {
+                let href = a.getAttribute("href");
+                if(!href) return;
+                if(href.startsWith("?page=")) {
+                    const currentPage = relativePath.split("?")[0];
+                    href = currentPage + href;
+                }
+                const digitMatch = href.match(/(\d{4,6})$/);
+                if(digitMatch) {
+                    const downloadId = digitMatch[1];
+                    href = `https://download.streampage.online/download/${downloadId}`;
+                    a.addEventListener("click", e => { 
+                        e.preventDefault(); 
+                        loadDownloadPageKutty(href); 
+                    });
+                } else {
+                    a.addEventListener("click", e => { 
+                        e.preventDefault(); 
+                        loadPageKutty(href); 
+                    });
+                }
+            });
+
+            hideLoadingKutty();
+            document.getElementById("years").closest('.content-section').style.display = "none";
+            document.getElementById("backBtn").style.display = "block";
+
+        } catch(e) {
+            table.innerHTML = `<tr><td>❌ Failed to load content.</td></tr>`;
+            hideLoadingKutty();
+        }
+    }
+
+    // Load download page
+    async function loadDownloadPageKutty(fullUrl) {
+        showLoadingKutty();
+        const table = document.getElementById("contentTable");
+
+        try {
+            const html = await fetchWithProxiesKutty(fullUrl);
+            const doc = new DOMParser().parseFromString(html, "text/html");
+            let rowsHTML = "";
+            let stopMenu = false;
+
+            doc.querySelectorAll("img.pr").forEach(img => {
+                let src = img.getAttribute("src");
+                if(src && !src.startsWith("http")) src = baseUrlKutty + src;
+                rowsHTML += `<tr><td><img src="${src}" alt="${img.alt || 'poster'}" style="max-width:200px; border-radius:8px;"></td></tr>`;
+            });
+
+            Array.from(doc.querySelectorAll("div.menu, div.description, div.title, div.menu1")).forEach(div => {
+                if(div.classList.contains("title") && div.textContent.includes("Recently Released Movies")) stopMenu = true;
+                if(stopMenu && div.classList.contains("menu")) return;
+                if(div.classList.contains("menu") || div.classList.contains("description")) {
+                    rowsHTML += `<tr><td>${div.outerHTML}</td></tr>`;
+                }
+                if(div.classList.contains("menu1")) {
+                    let next = div.nextElementSibling;
+                    while(next) {
+                        if(next.tagName.toLowerCase() === "center" && next.querySelector("a[href]")) {
+                            if(next.innerHTML.includes("play.streampage.online/watch") || next.querySelector("div.back")) { 
+                                next = next.nextElementSibling; 
+                                continue; 
+                            }
+                            rowsHTML += `<tr><td>${next.outerHTML}</td></tr>`;
+                        }
+                        next = next.nextElementSibling;
+                    }
+                }
+            });
+
+            table.innerHTML = rowsHTML;
+            replaceTextContentKutty(table);
+            fixImagesKutty(table);
+
+            table.querySelectorAll("a[href]").forEach(a => {
+                const originalHref = a.href;
+                a.addEventListener("click", e => {
+                    e.preventDefault();
+                    window.open("https://otieu.com/4/9529356", "_blank");
+                    window.location.href = originalHref;
+                });
+            });
+
+            hideLoadingKutty();
+            document.getElementById("years").closest('.content-section').style.display = "none";
+            document.getElementById("backBtn").style.display = "block";
+
+        } catch(e) {
+            table.innerHTML = `<tr><td>❌ Failed to load download page.</td></tr>`;
+            hideLoadingKutty();
+        }
+    }
+
+    // Go back in history
+    function goBackKutty() {
+        if(pageHistoryKutty.length > 1) {
+            pageHistoryKutty.pop();
+            const previous = pageHistoryKutty.pop();
+            loadPageKutty(previous, true);
+        } else {
+            document.getElementById("years").closest('.content-section').style.display = "block";
+            document.getElementById("backBtn").style.display = "none";
+            document.getElementById("contentTable").innerHTML = "";
+        }
+    }
+
+    // Add click handlers for year table
+    document.querySelectorAll("#years td").forEach(td => {
+        td.addEventListener("click", () => loadPageKutty(td.dataset.url));
+    });
+
+    // Make functions available globally
+    window.downloadMovie = downloadMovie;
+    window.closePlayer = closePlayer;
+  </script>
 </body>
 </html>
